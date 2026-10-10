@@ -262,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initNavigation();
   initSpotlight();
+  initCaseStudyTOC();
   initClipboardAndForm();
   initModals();
   initLiveGitHub();
@@ -460,19 +461,67 @@ function initNavigation() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Spotlight Cursor Tracker
+   4. Spotlight Cursor Tracker (Optimized for Pointer/Mouse Devices)
    -------------------------------------------------------------------------- */
 function initSpotlight() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  let ticking = false;
   document.addEventListener('mousemove', (e) => {
-    const cards = document.querySelectorAll('.spotlight-card');
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const cards = document.querySelectorAll('.spotlight-card');
+        cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          if (
+            e.clientX >= rect.left - 50 &&
+            e.clientX <= rect.right + 50 &&
+            e.clientY >= rect.top - 50 &&
+            e.clientY <= rect.bottom + 50
+          ) {
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* --------------------------------------------------------------------------
+   4b. Case Study Table of Contents ScrollSpy (IntersectionObserver)
+   -------------------------------------------------------------------------- */
+function initCaseStudyTOC() {
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const sections = document.querySelectorAll('.case-section');
+  if (!tocLinks.length || !sections.length) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
     });
-  });
+  }, observerOptions);
+
+  sections.forEach(sec => observer.observe(sec));
 }
 
 /* --------------------------------------------------------------------------

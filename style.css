@@ -2437,9 +2437,205 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media (max-width: 480px) {
-  .case-study-meta-grid {
-    grid-template-columns: 1fr;
+/* --------------------------------------------------------------------------
+   15. Cross-Platform Touch, Tablet & Multi-Device Adaptation
+   -------------------------------------------------------------------------- */
+/* Touch target optimization (44x44px minimum bounding box) */
+@media (pointer: coarse) {
+  .btn,
+  .filter-pill,
+  .nav-item,
+  .link-btn-circle,
+  .dock-icon,
+  .btn-detail-trigger,
+  .modal-close-btn,
+  .toc-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .filter-pill {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.88rem;
+  }
+
+  .link-btn-circle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .modal-close-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Horizontal Scroll Enhancements for Diagrams & Tables */
+.arch-diagram-wrapper,
+.tech-table-container,
+.ide-mockup {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.arch-diagram-wrapper::-webkit-scrollbar,
+.tech-table-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.arch-diagram-wrapper::-webkit-scrollbar-thumb,
+.tech-table-container::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-pill);
+}
+
+/* Small Screen Edge Case Refinements (320px - 380px) */
+@media (max-width: 380px) {
+  .hero-headline {
+    font-size: 1.85rem;
+    line-height: 1.2;
+  }
+  .hero-badge-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-action-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+  .case-study-title {
+    font-size: 1.55rem;
+  }
+  .flagship-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. Print Stylesheet (@media print) for PDF & Handout Export
+   -------------------------------------------------------------------------- */
+@media print {
+  /* Reset background and typography for crisp black & white printing */
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hide screen-only and decorative UI */
+  #particle-canvas,
+  .ambient-glow,
+  .floating-nav-wrapper,
+  .modal-overlay,
+  .contact-form-panel,
+  .hero-action-buttons,
+  .nav-cta-group,
+  .btn,
+  .filter-bar,
+  .dock-bar,
+  .toast-container {
+    display: none !important;
+  }
+
+  /* Expand layout containers */
+  .container,
+  .case-study-layout {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .case-study-sidebar {
+    display: none !important;
+  }
+
+  .case-study-header-card,
+  .glass-card,
+  .workflow-step-card,
+  .tradeoff-card,
+  .opd-card,
+  .arch-diagram-wrapper {
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    color: #111827 !important;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .case-study-title,
+  .section-title,
+  .flagship-title,
+  .timeline-title {
+    color: #111827 !important;
+  }
+
+  .gradient-headline {
+    background: none !important;
+    -webkit-text-fill-color: #111827 !important;
+    color: #111827 !important;
+    font-weight: 800;
+  }
+
+  .callout-box {
+    border: 1px solid #9ca3af !important;
+    background: #f9fafb !important;
+    color: #111827 !important;
+    page-break-inside: avoid;
+  }
+
+  .tech-table {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+  }
+
+  .tech-table th {
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+    border-bottom: 2px solid #9ca3af !important;
+  }
+
+  .tech-table td {
+    color: #111827 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+
+  .status-badge-verified,
+  .status-badge-intended,
+  .tech-chip,
+  .badge-featured {
+    border: 1px solid #9ca3af !important;
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* External Link Print URLs */
+  a[href^="http"]:not([href*="localhost"])::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #4b5563;
+    font-weight: normal;
   }
 }
 
@@ -2451,4 +2647,5 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
+
 
