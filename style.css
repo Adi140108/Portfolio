@@ -1887,59 +1887,71 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Hero Viewport Mobile Optimization */
   .hero-section {
-    padding-top: 5.25rem;
-    padding-bottom: 2.25rem;
+    padding-top: 4.75rem;
+    padding-bottom: 2rem;
     min-height: auto;
   }
 
   .hero-container {
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .hero-eyebrow {
-    font-size: 0.78rem;
-    padding: 0.35rem 0.85rem;
-    margin-bottom: 0.85rem;
+    font-size: 0.76rem;
+    padding: 0.35rem 0.8rem;
+    margin-bottom: 0.75rem;
     line-height: 1.35;
     white-space: normal;
   }
 
   .hero-headline {
-    font-size: clamp(1.75rem, 7.5vw, 2.45rem);
+    font-size: clamp(1.65rem, 7vw, 2.3rem);
     line-height: 1.15;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
   }
 
   .hero-role-typing {
     font-size: 0.95rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
   }
 
   .hero-lead {
-    font-size: 0.92rem;
-    line-height: 1.55;
-    margin-bottom: 1.35rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 1.15rem;
   }
 
   /* Hero Action Buttons on Mobile: 1 full-width primary + 2 secondary side-by-side */
   .hero-action-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
-    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+    width: 100% !important;
     margin-bottom: 1.25rem;
   }
 
-  .hero-action-buttons .btn-primary {
-    grid-column: 1 / -1;
-    min-height: 48px;
-    font-size: 0.95rem;
+  .hero-action-buttons .btn-primary,
+  .hero-action-buttons a.btn-primary {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    min-height: 46px !important;
+    font-size: 0.92rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  .hero-action-buttons .btn-glass {
-    min-height: 44px;
-    font-size: 0.88rem;
-    padding: 0.5rem 0.75rem;
+  .hero-action-buttons .btn-glass,
+  .hero-action-buttons a.btn-glass,
+  .hero-action-buttons button.btn-glass {
+    min-height: 42px !important;
+    font-size: 0.85rem !important;
+    padding: 0.45rem 0.65rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
   }
 
   .hero-social-dock {
@@ -2176,16 +2188,11 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 420px) {
   .hero-headline {
-    font-size: 1.7rem;
-  }
-  .hero-action-buttons {
-    grid-template-columns: 1fr;
-  }
-  .hero-action-buttons .btn {
-    width: 100%;
+    font-size: clamp(1.6rem, 6.8vw, 1.95rem);
+    line-height: 1.15;
   }
   .metrics-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
   .flagship-footer {
     flex-direction: column;
@@ -2834,23 +2841,15 @@ h1, h2, h3, h4, h5, h6 {
 /* Small Screen Edge Case Refinements (320px - 380px) */
 @media (max-width: 380px) {
   .hero-headline {
-    font-size: 1.85rem;
-    line-height: 1.2;
+    font-size: 1.65rem;
+    line-height: 1.18;
   }
   .hero-badge-row {
     flex-direction: column;
     align-items: flex-start;
   }
-  .hero-action-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-  .hero-action-buttons .btn {
-    width: 100%;
-    text-align: center;
-  }
   .case-study-title {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
   }
   .flagship-top {
     flex-direction: column;
@@ -2858,7 +2857,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.75rem;
   }
   .section-title {
-    font-size: 1.75rem;
+    font-size: 1.65rem;
   }
 }
 
