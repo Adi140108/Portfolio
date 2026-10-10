@@ -1,0 +1,19 @@
+# AI Agent and internal workspace configurations
+.agent/
+.agents/
+.gemini/
+.gsd/
+adapters/
+scripts/
+model_capabilities.yaml
+GSD-STYLE.md
+PROJECT_RULES.md
+VERSION
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+.temp/
+*.log

@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Adithya | Full-Stack &amp; Flutter Developer | AI Builder</title>
+  <meta name="title" content="Adithya | Full-Stack &amp; Flutter Developer | AI Builder">
+  <meta name="description" content="Portfolio of Adithya (@Adi140108) — CSE Student, Full-Stack &amp; Flutter Developer building scalable web applications, mobile tools, and AI integrations. Hackathon competitor and open-source contributor.">
+  <meta name="author" content="Adithya">
+  <meta name="theme-color" content="#060913">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/Adi140108">
+  <meta property="og:title" content="Adithya | Full-Stack &amp; Flutter Developer | AI Builder">
+  <meta property="og:description" content="CSE student and software developer building web systems, Flutter mobile applications, and AI integrations. Explore projects and hackathon journey.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/209137198?v=4">
+
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Adithya | Full-Stack &amp; Flutter Developer | AI Builder">
+  <meta property="twitter:description" content="CSE student and software developer building web systems, Flutter mobile applications, and AI integrations.">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/u/209137198?v=4">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts: Archivo (Headings) + Space Grotesk (Body) + JetBrains Mono (Code/Metadata) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-base">
+
+  <!-- Ambient Dynamic Lighting & Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-glow glow-amber" aria-hidden="true"></div>
+  <div class="ambient-glow glow-violet" aria-hidden="true"></div>
+  <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+
+  <!-- FLOATING NAVIGATION BAR -->
+  <header class="floating-nav-wrapper">
+    <div class="container">
+      <nav class="floating-navbar glass-card" id="main-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-brand" aria-label="Adithya Home">
+          <span class="brand-sym">&lt;</span>
+          <span class="brand-text">Adithya</span>
+          <span class="brand-sym">/&gt;</span>
+        </a>
+
+        <div class="nav-links-desktop" id="nav-menu">
+          <a href="#about" class="nav-item">About</a>
+          <a href="#experience" class="nav-item">Experience</a>
+          <a href="#featured" class="nav-item">Projects</a>
+          <a href="#repos" class="nav-item">Repositories</a>
+          <a href="#skills" class="nav-item">Skills</a>
+          <a href="#contact" class="nav-item">Contact</a>
+        </div>
+
+        <div class="nav-right-actions">
+          <button class="btn btn-sm btn-glass" id="open-resume-btn" aria-label="View or Request Resume">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Resume</span>
+          </button>
+          <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="btn-github-pill" aria-label="Visit GitHub Profile Adi140108">
+            <i class="fa-brands fa-github"></i>
+            <span>@Adi140108</span>
+          </a>
+          <button class="nav-toggle-btn" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTENT -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        
+        <!-- Left Column: Typography, Value Proposition & Actions -->
+        <div class="hero-text-col">
+          <div class="hero-eyebrow">
+            <span class="status-indicator">
+              <span class="pulse-ring"></span>
+              <span class="status-dot"></span>
+            </span>
+            <span class="eyebrow-text">Open to Software Internships &amp; Hackathon Collabs</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Engineering <br>
+            <span class="gradient-headline">Scalable Software</span> &amp; Intelligent Apps.
+          </h1>
+
+          <div class="hero-role-typing" aria-live="polite">
+            <span class="role-prefix">Specializing in </span>
+            <span class="role-text" id="typewriter">Full-Stack Web Applications</span>
+            <span class="typing-cursor">|</span>
+          </div>
+
+          <p class="hero-lead">
+            I'm <strong>Adithya</strong>, a Computer Science Engineering student and developer passionate about building reliable full-stack web platforms, Flutter mobile tools, and AI integrations. Focused on clean architecture, hackathon speed, and shipping practical solutions.
+          </p>
+
+          <div class="hero-action-buttons">
+            <a href="#featured" class="btn btn-primary">
+              <i class="fa-solid fa-rocket"></i>
+              <span>Explore Projects</span>
+            </a>
+            <a href="#contact" class="btn btn-glass">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Get In Touch</span>
+            </a>
+            <button class="btn btn-glass" id="hero-resume-trigger">
+              <i class="fa-regular fa-file-pdf"></i>
+              <span>Request Resume</span>
+            </button>
+          </div>
+
+          <!-- Hero Verified Social Dock -->
+          <div class="hero-social-dock">
+            <span class="dock-label">Verified Profiles:</span>
+            <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="dock-icon" title="GitHub (@Adi140108)" aria-label="GitHub Profile">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="mailto:adithyam357@gmail.com" class="dock-icon" title="Email: adithyam357@gmail.com" aria-label="Email Adithya">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://codewars-4-0.vercel.app/" target="_blank" rel="noopener noreferrer" class="dock-icon" title="Live Project: CODEWARS 4.0" aria-label="Live Demo CODEWARS 4.0">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Profile & Terminal Card -->
+        <div class="hero-visual-col">
+          <div class="developer-card glass-card spotlight-card">
+            
+            <!-- Card Header Profile -->
+            <div class="dev-card-header">
+              <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/209137198?v=4" alt="Adithya Profile Avatar" class="dev-avatar" id="hero-avatar" loading="eager" onerror="this.src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'">
+                <span class="avatar-verified" title="Active Verified Builder"><i class="fa-solid fa-check"></i></span>
+              </div>
+              <div class="dev-meta">
+                <div class="dev-name-row">
+                  <h2 class="dev-name" id="hero-name">Adithya</h2>
+                  <span class="badge-role">CSE Student &amp; Builder</span>
+                </div>
+                <p class="dev-handle">@Adi140108</p>
+                <div class="dev-focus-tag">
+                  <i class="fa-solid fa-layer-group text-amber"></i> Full-Stack &bull; Flutter &bull; AI
+                </div>
+              </div>
+            </div>
+
+            <!-- Real GitHub Stats Grid -->
+            <div class="github-stats-bar">
+              <div class="stat-cell">
+                <span class="stat-val" id="stat-repos-count">16</span>
+                <span class="stat-lbl">Public Repos</span>
+              </div>
+              <div class="stat-cell">
+                <span class="stat-val" id="stat-followers-count">1+</span>
+                <span class="stat-lbl">Followers</span>
+              </div>
+              <div class="stat-cell">
+                <span class="stat-val text-accent">Top 10</span>
+                <span class="stat-lbl">GDG TechSprint</span>
+              </div>
+            </div>
+
+            <!-- Terminal Widget -->
+            <div class="interactive-terminal">
+              <div class="terminal-bar">
+                <div class="terminal-buttons">
+                  <span class="t-btn t-close"></span>
+                  <span class="t-btn t-min"></span>
+                  <span class="t-btn t-max"></span>
+                </div>
+                <span class="t-title">adi@developer-env: ~</span>
+              </div>
+              <div class="terminal-output">
+                <div class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd">whoami</span></div>
+                <div class="t-line t-info">Adithya &mdash; Full-Stack &amp; Mobile Engineer</div>
+                <div class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd">adi --hackathons</span></div>
+                <div class="t-line t-success">['SIH Internal Qualified (PS 45)', 'TechSprint Top 10', 'Odoo x NMIT']</div>
+                <div class="t-line"><span class="t-prompt">❯</span> <span class="t-cmd">git status</span></div>
+                <div class="t-line t-highlight">✔ Clean architecture &amp; ready to ship</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- METRICS & HIGHLIGHTS BAR -->
+    <section class="metrics-section" aria-label="Key Highlights">
+      <div class="container">
+        <div class="metrics-grid glass-card">
+          <div class="metric-card">
+            <div class="metric-icon-box icon-amber"><i class="fa-solid fa-code-fork"></i></div>
+            <div class="metric-info">
+              <h3 class="metric-number" id="quick-repo-total">16+</h3>
+              <p class="metric-sub">Open Source Repositories</p>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box icon-purple"><i class="fa-solid fa-trophy"></i></div>
+            <div class="metric-info">
+              <h3 class="metric-number">Hackathon Competitor</h3>
+              <p class="metric-sub">SIH &bull; GDG TechSprint Top 10</p>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box icon-cyan"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="metric-info">
+              <h3 class="metric-number">Modern Stack</h3>
+              <p class="metric-sub">Flutter, React, TS, Astro, Dart</p>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box icon-emerald"><i class="fa-solid fa-satellite-dish"></i></div>
+            <div class="metric-info">
+              <h3 class="metric-number">Live API Sync</h3>
+              <p class="metric-sub">Direct GitHub API Telemetry</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="section-container">
+      <div class="container">
+        <div class="about-hero-box glass-card spotlight-card">
+          <div class="about-content-grid">
+            
+            <div class="about-narrative">
+              <div class="section-pill"><i class="fa-regular fa-user"></i> About Me</div>
+              <h2 class="about-title">Problem Solver. Product Engineer. <span class="gradient-headline">Continuous Builder.</span></h2>
+              
+              <p class="about-paragraph">
+                I am a <strong>Computer Science Engineering student</strong> with a focus on full-stack web development, Flutter mobile applications, and AI integrations. Rather than just understanding concepts in theory, I believe in learning through building, testing, and shipping actual working software.
+              </p>
+              <p class="about-paragraph">
+                Whether competing in high-intensity hackathons or contributing to club projects at <em>Nexora</em>, I focus on clean code structure, modular architecture, responsive interfaces, and practical user utility.
+              </p>
+
+              <div class="about-pillars-list">
+                <div class="pillar-item">
+                  <div class="pillar-icon"><i class="fa-solid fa-check"></i></div>
+                  <span><strong>Problem-Oriented Engineering:</strong> Translating functional requirements into reliable, responsive user interfaces and backend logic.</span>
+                </div>
+                <div class="pillar-item">
+                  <div class="pillar-icon"><i class="fa-solid fa-check"></i></div>
+                  <span><strong>Hackathon Collaboration:</strong> Proven teamwork in high-velocity environments (SIH Internal Selection, GDG TechSprint Top 10, Odoo × NMIT).</span>
+                </div>
+                <div class="pillar-item">
+                  <div class="pillar-icon"><i class="fa-solid fa-check"></i></div>
+                  <span><strong>Clean &amp; Maintainable Code:</strong> Modular components, clear Git history, and accessible design principles.</span>
+                </div>
+              </div>
+
+              <div class="about-btn-row">
+                <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  <i class="fa-brands fa-github"></i> Follow on GitHub
+                </a>
+                <button class="btn btn-glass" id="about-copy-email">
+                  <i class="fa-regular fa-copy"></i>
+                  <span id="about-copy-text">Copy Email Address</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="about-code-preview">
+              <div class="ide-frame glass-card">
+                <div class="ide-tab-bar">
+                  <div class="ide-dots">
+                    <span class="ide-dot red"></span>
+                    <span class="ide-dot yellow"></span>
+                    <span class="ide-dot green"></span>
+                  </div>
+                  <span class="ide-filename"><i class="fa-brands fa-square-js text-amber"></i> developer.profile.ts</span>
+                </div>
+                <pre class="ide-code-view"><code><span class="code-keyword">export const</span> <span class="code-var">adithya</span>: <span class="code-type">EngineerProfile</span> = {
+  <span class="code-prop">name</span>: <span class="code-str">"Adithya"</span>,
+  <span class="code-prop">role</span>: <span class="code-str">"Full-Stack &amp; Flutter Developer"</span>,
+  <span class="code-prop">education</span>: <span class="code-str">"B.E. Computer Science &amp; Engineering"</span>,
+  <span class="code-prop">coreCompetencies</span>: [
+    <span class="code-str">"Web Architecture &amp; REST APIs"</span>,
+    <span class="code-str">"Cross-Platform Flutter Apps"</span>,
+    <span class="code-str">"AI Application Integrations"</span>
+  ],
+  <span class="code-prop">hackathonExperience</span>: [
+    <span class="code-str">"Smart India Hackathon (Internal Qualified)"</span>,
+    <span class="code-str">"TechSprint GDG NMIT (Top 10 - Team BitBros)"</span>,
+    <span class="code-str">"Odoo X NMIT 2026 (DayFlow)"</span>
+  ],
+  <span class="code-prop">availableFor</span>: <span class="code-str">"Internships &amp; Technical Projects"</span>
+};</code></pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS, EXPERIENCE & LEADERSHIP -->
+    <section id="experience" class="section-container">
+      <div class="container">
+        
+        <div class="section-heading">
+          <div class="section-pill"><i class="fa-solid fa-award"></i> Track Record</div>
+          <h2 class="section-title">Experience &amp; <span class="gradient-headline">Achievements</span></h2>
+          <p class="section-subtitle">Verified hackathon milestones, club leadership roles, and real-world engineering experiences.</p>
+        </div>
+
+        <div class="timeline-container">
+          
+          <!-- Timeline Item 1: Smart India Hackathon -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="timeline-card glass-card spotlight-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-tag tag-amber">Hackathon Milestone</span>
+                  <h3 class="timeline-title">Smart India Hackathon (SIH) &mdash; Internal Selection Qualified</h3>
+                  <p class="timeline-subtitle">Problem Statement 45 &bull; Traditional Knowledge &amp; IP Protection</p>
+                </div>
+                <span class="timeline-date">2026</span>
+              </div>
+              <p class="timeline-desc">
+                Qualified the internal university selection round for <strong>Smart India Hackathon Problem Statement 45</strong>. Currently engineering <em>IP-Sakti</em>, a specialized discovery and validation platform designed to safeguard traditional medicinal and technical knowledge through intellectual property categorization.
+              </p>
+              <div class="tech-tag-row">
+                <span class="tech-chip">SIH 2026</span>
+                <span class="tech-chip">IP-Sakti</span>
+                <span class="tech-chip">Problem Statement 45</span>
+                <span class="tech-chip">Web Platform</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2: TechSprint GDG NMIT -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-trophy"></i></div>
+            <div class="timeline-card glass-card spotlight-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-tag tag-purple">Competitive Hackathon</span>
+                  <h3 class="timeline-title">TechSprint Hackathon &mdash; Top 10 Finalist</h3>
+                  <p class="timeline-subtitle">Organized by Google Developer Groups (GDG) NMIT &bull; Team BitBros</p>
+                </div>
+                <span class="timeline-date">2026</span>
+              </div>
+              <p class="timeline-desc">
+                Collaborated with team <em>BitBros</em> to build and present an end-to-end technical prototype under strict time constraints. Successfully advanced through evaluation rounds to secure a <strong>Top 10 Finalist</strong> standing out of numerous student engineering teams.
+              </p>
+              <div class="tech-tag-row">
+                <span class="tech-chip">Top 10 Position</span>
+                <span class="tech-chip">GDG NMIT</span>
+                <span class="tech-chip">Team BitBros</span>
+                <span class="tech-chip">Rapid Prototyping</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3: Odoo X NMIT Hackathon -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div class="timeline-card glass-card spotlight-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-tag tag-cyan">Mobile Engineering</span>
+                  <h3 class="timeline-title">Odoo &times; NMIT 2026 Hackathon</h3>
+                  <p class="timeline-subtitle">Project: DayFlow &mdash; Mobile Workflow &amp; Task Orchestration</p>
+                </div>
+                <span class="timeline-date">2026</span>
+              </div>
+              <p class="timeline-desc">
+                Engineered <strong>DayFlow</strong>, a cross-platform Flutter/Dart mobile application focused on streamlining daily enterprise operations, productivity workflows, and task scheduling for agile teams.
+              </p>
+              <div class="tech-tag-row">
+                <span class="tech-chip">Flutter</span>
+                <span class="tech-chip">Dart</span>
+                <span class="tech-chip">Cross-Platform UI</span>
+                <span class="tech-chip">Odoo Hackathon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4: Nexora Club Technical Team -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-people-group"></i></div>
+            <div class="timeline-card glass-card spotlight-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-tag tag-emerald">Campus Leadership</span>
+                  <h3 class="timeline-title">Nexora Club &mdash; Technical Development Team</h3>
+                  <p class="timeline-subtitle">Student Technical Community &amp; Portal Development</p>
+                </div>
+                <span class="timeline-date">Active</span>
+              </div>
+              <p class="timeline-desc">
+                Active member of the core technical development team at <strong>Nexora Club</strong>. Contributed to building community portals, the <em>Nexora Dashboard</em> administrative UI, and organizing coding activities for peer developers.
+              </p>
+              <div class="tech-tag-row">
+                <span class="tech-chip">Web Development</span>
+                <span class="tech-chip">Nexora Dashboard</span>
+                <span class="tech-chip">Community Building</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5: InAmigos Foundation Internship -->
+          <div class="timeline-item">
+            <div class="timeline-dot"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="timeline-card glass-card spotlight-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-tag tag-amber">Internship Experience</span>
+                  <h3 class="timeline-title">Web Development Intern &mdash; InAmigos Foundation</h3>
+                  <p class="timeline-subtitle">Non-Profit Organization Portal Development</p>
+                </div>
+                <span class="timeline-date">Completed</span>
+              </div>
+              <p class="timeline-desc">
+                Contributed to frontend web development tasks, implementing responsive landing pages, social outreach components, and accessibility improvements for the foundation's public web presence.
+              </p>
+              <div class="tech-tag-row">
+                <span class="tech-chip">HTML5 / CSS3</span>
+                <span class="tech-chip">JavaScript</span>
+                <span class="tech-chip">Responsive Web</span>
+                <span class="tech-chip">Internship</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SHOWCASE -->
+    <section id="featured" class="section-container">
+      <div class="container">
+        
+        <div class="section-heading">
+          <div class="section-pill"><i class="fa-solid fa-code"></i> Engineering Showcase</div>
+          <h2 class="section-title">Featured <span class="gradient-headline">Projects</span></h2>
+          <p class="section-subtitle">Real applications, hackathon prototypes, and web systems built with modern engineering stacks.</p>
+        </div>
+
+        <div class="flagship-grid">
+
+          <!-- Featured Project 1: CODEWARS 4.0 -->
+          <article class="flagship-card glass-card spotlight-card">
+            <div class="flagship-top">
+              <div class="flagship-category">
+                <span class="badge-featured live-pill"><i class="fa-solid fa-globe"></i> Deployed Platform</span>
+              </div>
+              <div class="flagship-links">
+                <a href="https://codewars-4-0.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="Launch Live Site" aria-label="Live Demo CODEWARS 4.0">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://github.com/Adi140108/CODEWARS-4.0" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="GitHub Repository" aria-label="GitHub Repository CODEWARS 4.0">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="flagship-body">
+              <div class="flagship-icon icon-amber"><i class="fa-solid fa-terminal"></i></div>
+              <h3 class="flagship-title">CODEWARS 4.0</h3>
+              <p class="flagship-problem"><strong>Problem:</strong> Technical competitions need high-engagement challenge distribution and live event coordination.</p>
+              <p class="flagship-desc">
+                Interactive competitive coding event web portal engineered with a cyber-styled user interface, dynamic event schedules, participant registration workflows, and responsive challenge guidelines.
+              </p>
+              
+              <div class="tech-tag-row">
+                <span class="tech-chip">JavaScript</span>
+                <span class="tech-chip">Vercel</span>
+                <span class="tech-chip">Cyberpunk UI</span>
+                <span class="tech-chip">Live Deployed</span>
+              </div>
+            </div>
+
+            <div class="flagship-footer">
+              <a href="https://codewars-4-0.vercel.app/" target="_blank" rel="noopener noreferrer" class="cta-link">
+                <span>View Live Platform</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <button class="btn-detail-trigger" data-project="codewars" aria-label="View CODEWARS 4.0 Architecture Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </button>
+            </div>
+          </article>
+
+          <!-- Featured Project 2: DayFlow — BitBros -->
+          <article class="flagship-card glass-card spotlight-card">
+            <div class="flagship-top">
+              <div class="flagship-category">
+                <span class="badge-featured hackathon-pill"><i class="fa-solid fa-award"></i> Odoo X NMIT 2026</span>
+              </div>
+              <div class="flagship-links">
+                <a href="https://github.com/Adi140108/DayFlow-BitBros-" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="GitHub Repository" aria-label="GitHub Repository DayFlow">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="flagship-body">
+              <div class="flagship-icon icon-purple"><i class="fa-solid fa-mobile-screen-button"></i></div>
+              <h3 class="flagship-title">DayFlow &mdash; BitBros</h3>
+              <p class="flagship-problem"><strong>Problem:</strong> Enterprise task management tools are often cluttered and cumbersome for fast-paced operational workflows.</p>
+              <p class="flagship-desc">
+                Cross-platform mobile productivity system designed for team routine tracking, shift operations, and structured task management with clean Flutter UI components.
+              </p>
+              
+              <div class="tech-tag-row">
+                <span class="tech-chip">Dart</span>
+                <span class="tech-chip">Flutter</span>
+                <span class="tech-chip">Mobile Architecture</span>
+                <span class="tech-chip">Hackathon Prototype</span>
+              </div>
+            </div>
+
+            <div class="flagship-footer">
+              <a href="https://github.com/Adi140108/DayFlow-BitBros-" target="_blank" rel="noopener noreferrer" class="cta-link">
+                <span>Inspect Repository</span>
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <button class="btn-detail-trigger" data-project="dayflow" aria-label="View DayFlow Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </button>
+            </div>
+          </article>
+
+          <!-- Featured Project 3: IP-Sakti (SIH PS 45) -->
+          <article class="flagship-card glass-card spotlight-card">
+            <div class="flagship-top">
+              <div class="flagship-category">
+                <span class="badge-featured sih-pill"><i class="fa-solid fa-shield-halved"></i> SIH PS 45 &bull; In Dev</span>
+              </div>
+              <div class="flagship-links">
+                <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="View Profile" aria-label="GitHub Profile">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="flagship-body">
+              <div class="flagship-icon icon-amber"><i class="fa-solid fa-book-bookmark"></i></div>
+              <h3 class="flagship-title">IP-Sakti &mdash; Traditional Knowledge IP</h3>
+              <p class="flagship-problem"><strong>Problem:</strong> Traditional intellectual property and heritage practices lack digitized verification and structured discovery mechanisms.</p>
+              <p class="flagship-desc">
+                Smart India Hackathon (Problem Statement 45) platform currently in active development. Focuses on cataloging, verification, and legal protection workflows for traditional knowledge assets.
+              </p>
+              
+              <div class="tech-tag-row">
+                <span class="tech-chip">SIH 2026</span>
+                <span class="tech-chip">Problem Statement 45</span>
+                <span class="tech-chip">IP Catalog</span>
+                <span class="tech-chip">Active Development</span>
+              </div>
+            </div>
+
+            <div class="flagship-footer">
+              <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="cta-link">
+                <span>View Status on GitHub</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <button class="btn-detail-trigger" data-project="ipsakti" aria-label="View IP-Sakti Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </button>
+            </div>
+          </article>
+
+          <!-- Featured Project 4: MediMind-Ai & Sehat-Setu -->
+          <article class="flagship-card glass-card spotlight-card">
+            <div class="flagship-top">
+              <div class="flagship-category">
+                <span class="badge-featured ai-pill"><i class="fa-solid fa-brain"></i> AI &amp; Health Triage</span>
+              </div>
+              <div class="flagship-links">
+                <a href="https://github.com/Adi140108/MediMind-Ai" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="MediMind-Ai Repo" aria-label="MediMind-Ai Repo">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://github.com/Adi140108/Sehat-Setu" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="Sehat-Setu Repo" aria-label="Sehat-Setu Repo">
+                  <i class="fa-solid fa-heart-pulse"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="flagship-body">
+              <div class="flagship-icon icon-rose"><i class="fa-solid fa-stethoscope"></i></div>
+              <h3 class="flagship-title">MediMind-Ai &amp; Sehat-Setu</h3>
+              <p class="flagship-problem"><strong>Problem:</strong> Patients often struggle with preliminary medical guidance and transparent appointment connections.</p>
+              <p class="flagship-desc">
+                Healthcare software suite combining an intelligent advisory platform (MediMind-Ai) built with Astro and patient-provider appointment coordination (Sehat-Setu) built with TypeScript.
+              </p>
+              
+              <div class="tech-tag-row">
+                <span class="tech-chip">Astro</span>
+                <span class="tech-chip">TypeScript</span>
+                <span class="tech-chip">Health AI</span>
+                <span class="tech-chip">Modular Web</span>
+              </div>
+            </div>
+
+            <div class="flagship-footer">
+              <a href="https://github.com/Adi140108/MediMind-Ai" target="_blank" rel="noopener noreferrer" class="cta-link">
+                <span>View MediMind AI</span>
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <button class="btn-detail-trigger" data-project="medimind" aria-label="View MediMind Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </button>
+            </div>
+          </article>
+
+          <!-- Featured Project 5: Nexora Dashboard -->
+          <article class="flagship-card glass-card spotlight-card">
+            <div class="flagship-top">
+              <div class="flagship-category">
+                <span class="badge-featured analytics-pill"><i class="fa-solid fa-chart-line"></i> Analytics UI</span>
+              </div>
+              <div class="flagship-links">
+                <a href="https://github.com/Adi140108/Nexora_Dashboard" target="_blank" rel="noopener noreferrer" class="link-btn-circle" title="View Source on GitHub" aria-label="GitHub Repository Nexora Dashboard">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="flagship-body">
+              <div class="flagship-icon icon-cyan"><i class="fa-solid fa-chart-pie"></i></div>
+              <h3 class="flagship-title">Nexora Dashboard</h3>
+              <p class="flagship-problem"><strong>Problem:</strong> Student clubs and organizations require a centralized UI to monitor metrics and member activities.</p>
+              <p class="flagship-desc">
+                Modular administrative dashboard UI built for the Nexora technical club, featuring dynamic analytics widgets, activity feeds, and responsive navigation controls.
+              </p>
+              
+              <div class="tech-tag-row">
+                <span class="tech-chip">JavaScript</span>
+                <span class="tech-chip">UI Architecture</span>
+                <span class="tech-chip">Charts</span>
+                <span class="tech-chip">Club Project</span>
+              </div>
+            </div>
+
+            <div class="flagship-footer">
+              <a href="https://github.com/Adi140108/Nexora_Dashboard" target="_blank" rel="noopener noreferrer" class="cta-link">
+                <span>View Dashboard Repo</span>
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <button class="btn-detail-trigger" data-project="nexora" aria-label="View Nexora Details">
+                <i class="fa-solid fa-circle-info"></i> Details
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE GITHUB REPOSITORIES EXPLORER -->
+    <section id="repos" class="section-container repos-explorer-section">
+      <div class="container">
+        
+        <div class="section-heading">
+          <div class="section-pill"><i class="fa-brands fa-github"></i> Real-Time Telemetry</div>
+          <h2 class="section-title">GitHub <span class="gradient-headline">Repository Hub</span></h2>
+          <p class="section-subtitle">Direct real-time connection with GitHub API (@Adi140108). Search projects, filter by verified programming language, and inspect repositories.</p>
+        </div>
+
+        <!-- Explorer Control Bar -->
+        <div class="explorer-toolbar glass-card">
+          
+          <!-- Search input -->
+          <div class="search-field-box">
+            <i class="fa-solid fa-magnifying-glass search-leading-icon" aria-hidden="true"></i>
+            <input type="text" id="repo-search-input" placeholder="Search repositories by name, description or language..." aria-label="Search repositories">
+            <button id="clear-search-btn" class="clear-icon-btn" aria-label="Clear search input" style="display: none;">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Dynamic Language Filter Pills -->
+          <div class="filter-pill-group" id="language-filters-container" role="tablist" aria-label="Filter repositories by language">
+            <button class="filter-pill active" role="tab" aria-selected="true" data-lang="all">
+              <span>All</span>
+              <span class="pill-count" id="count-all-badge">16</span>
+            </button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-lang="JavaScript">
+              <span class="lang-dot" style="background-color: #f7df1e;"></span>
+              <span>JavaScript</span>
+            </button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-lang="TypeScript">
+              <span class="lang-dot" style="background-color: #3178c6;"></span>
+              <span>TypeScript</span>
+            </button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-lang="Dart">
+              <span class="lang-dot" style="background-color: #00b4ab;"></span>
+              <span>Dart</span>
+            </button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-lang="Astro">
+              <span class="lang-dot" style="background-color: #ff5d01;"></span>
+              <span>Astro</span>
+            </button>
+            <button class="filter-pill" role="tab" aria-selected="false" data-lang="HTML">
+              <span class="lang-dot" style="background-color: #e34f26;"></span>
+              <span>HTML</span>
+            </button>
+          </div>
+
+          <!-- Sort select -->
+          <div class="sort-control-group">
+            <label for="repo-sort-select" class="sort-label">
+              <i class="fa-solid fa-arrow-down-wide-short"></i>
+              <span>Sort:</span>
+            </label>
+            <select id="repo-sort-select" class="custom-select-dropdown" aria-label="Sort repositories">
+              <option value="updated">Recently Pushed</option>
+              <option value="name">Alphabetical (A &ndash; Z)</option>
+              <option value="stars">Stars &amp; Forks</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Repositories Grid Container -->
+        <div class="repos-masonry-grid" id="repos-container" role="region" aria-live="polite">
+          <!-- Loading Skeletons -->
+          <div class="repo-skeleton-card glass-card" aria-hidden="true"></div>
+          <div class="repo-skeleton-card glass-card" aria-hidden="true"></div>
+          <div class="repo-skeleton-card glass-card" aria-hidden="true"></div>
+          <div class="repo-skeleton-card glass-card" aria-hidden="true"></div>
+          <div class="repo-skeleton-card glass-card" aria-hidden="true"></div>
+          <div class="repo-skeleton-card glass-card" aria-hidden="true"></div>
+        </div>
+
+        <!-- Empty Results Message -->
+        <div id="no-repos-found" class="empty-state-panel glass-card" style="display: none;">
+          <div class="empty-state-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h3>No matching repositories found</h3>
+          <p>Try searching for another keyword or reset the language filter.</p>
+          <button class="btn btn-primary btn-sm" id="reset-filters-btn">Reset Filters</button>
+        </div>
+
+        <!-- Sync Footer Status -->
+        <div class="sync-footer-bar glass-card">
+          <div class="sync-info-tag">
+            <i class="fa-solid fa-satellite-dish text-emerald" id="sync-icon"></i>
+            <span id="sync-status-msg">Connected with GitHub API (@Adi140108)</span>
+          </div>
+          <a href="https://github.com/Adi140108?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn-external-link">
+            <span>View All 16+ on GitHub</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <section id="skills" class="section-container">
+      <div class="container">
+        
+        <div class="section-heading">
+          <div class="section-pill"><i class="fa-solid fa-microchip"></i> Technical Capabilities</div>
+          <h2 class="section-title">Skills &amp; <span class="gradient-headline">Toolchain</span></h2>
+          <p class="section-subtitle">Verified programming languages, frameworks, and engineering tools applied across projects.</p>
+        </div>
+
+        <div class="skills-category-grid">
+          
+          <!-- Category 1: Frontend & Web -->
+          <div class="skill-group-card glass-card spotlight-card">
+            <div class="group-header">
+              <div class="group-icon-box icon-amber"><i class="fa-solid fa-code"></i></div>
+              <div>
+                <h3 class="group-title">Frontend &amp; Web Systems</h3>
+                <p class="group-sub">Responsive, performant, accessible UI</p>
+              </div>
+            </div>
+
+            <div class="skill-chips-wrap">
+              <span class="skill-badge"><i class="fa-brands fa-js text-amber"></i> JavaScript (ES6+)</span>
+              <span class="skill-badge"><i class="fa-solid fa-code text-cyan"></i> TypeScript</span>
+              <span class="skill-badge"><i class="fa-brands fa-react text-cyan"></i> React.js</span>
+              <span class="skill-badge"><i class="fa-solid fa-rocket text-orange"></i> Astro</span>
+              <span class="skill-badge"><i class="fa-brands fa-html5 text-orange"></i> HTML5 / Semantic Web</span>
+              <span class="skill-badge"><i class="fa-brands fa-css3-alt text-blue"></i> CSS3 / Modern Flex &amp; Grid</span>
+              <span class="skill-badge"><i class="fa-solid fa-universal-access text-emerald"></i> Web Accessibility (a11y)</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Mobile & Core Languages -->
+          <div class="skill-group-card glass-card spotlight-card">
+            <div class="group-header">
+              <div class="group-icon-box icon-purple"><i class="fa-solid fa-mobile-screen"></i></div>
+              <div>
+                <h3 class="group-title">Mobile &amp; Languages</h3>
+                <p class="group-sub">Cross-platform apps &amp; core computation</p>
+              </div>
+            </div>
+
+            <div class="skill-chips-wrap">
+              <span class="skill-badge"><i class="fa-solid fa-feather text-cyan"></i> Dart</span>
+              <span class="skill-badge"><i class="fa-brands fa-flutter text-blue"></i> Flutter Cross-Platform</span>
+              <span class="skill-badge"><i class="fa-brands fa-python text-emerald"></i> Python</span>
+              <span class="skill-badge"><i class="fa-solid fa-database text-purple"></i> Relational &amp; NoSQL</span>
+              <span class="skill-badge"><i class="fa-solid fa-gears text-amber"></i> RESTful API Architecture</span>
+            </div>
+          </div>
+
+          <!-- Category 3: AI, Cloud & Engineering Workflow -->
+          <div class="skill-group-card glass-card spotlight-card">
+            <div class="group-header">
+              <div class="group-icon-box icon-cyan"><i class="fa-solid fa-brain"></i></div>
+              <div>
+                <h3 class="group-title">AI &amp; Engineering Workflow</h3>
+                <p class="group-sub">Autonomous agents, deployment, &amp; version control</p>
+              </div>
+            </div>
+
+            <div class="skill-chips-wrap">
+              <span class="skill-badge"><i class="fa-brands fa-git-alt text-orange"></i> Git &amp; GitHub Workflows</span>
+              <span class="skill-badge"><i class="fa-solid fa-robot text-purple"></i> LLM API Integrations</span>
+              <span class="skill-badge"><i class="fa-solid fa-cloud text-cyan"></i> Vercel Cloud Deployment</span>
+              <span class="skill-badge"><i class="fa-solid fa-terminal text-emerald"></i> PowerShell &amp; Bash Scripting</span>
+              <span class="skill-badge"><i class="fa-solid fa-cubes text-amber"></i> Software Architecture</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section-container">
+      <div class="container">
+        
+        <div class="section-heading">
+          <div class="section-pill"><i class="fa-regular fa-paper-plane"></i> Get In Touch</div>
+          <h2 class="section-title">Let's <span class="gradient-headline">Connect</span></h2>
+          <p class="section-subtitle">Interested in discussing an internship, hackathon collaboration, or software engineering project? Reach out directly.</p>
+        </div>
+
+        <div class="contact-layout-grid">
+          
+          <!-- Contact Info Channels -->
+          <div class="contact-channels-column">
+            
+            <a href="mailto:adithyam357@gmail.com" class="channel-card glass-card spotlight-card" aria-label="Send direct email to adithyam357@gmail.com">
+              <div class="channel-icon-box icon-amber"><i class="fa-solid fa-envelope"></i></div>
+              <div class="channel-text">
+                <h4>Direct Email</h4>
+                <p>adithyam357@gmail.com</p>
+              </div>
+              <i class="fa-solid fa-arrow-right channel-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="channel-card glass-card spotlight-card" aria-label="Open GitHub Profile @Adi140108">
+              <div class="channel-icon-box icon-purple"><i class="fa-brands fa-github"></i></div>
+              <div class="channel-text">
+                <h4>GitHub Profile</h4>
+                <p>github.com/Adi140108</p>
+              </div>
+              <i class="fa-solid fa-arrow-right channel-arrow" aria-hidden="true"></i>
+            </a>
+
+            <div class="channel-card glass-card spotlight-card" id="oneclick-copy-card" role="button" tabindex="0" aria-label="Click to copy email address to clipboard">
+              <div class="channel-icon-box icon-emerald"><i class="fa-solid fa-clipboard-check"></i></div>
+              <div class="channel-text">
+                <h4>Instant Copy</h4>
+                <p>adithyam357@gmail.com</p>
+              </div>
+              <i class="fa-solid fa-copy channel-arrow" aria-hidden="true"></i>
+            </div>
+
+          </div>
+
+          <!-- Contact Form Panel -->
+          <div class="contact-form-panel glass-card">
+            <form id="portfolio-contact-form" action="https://formspree.io/f/moejwkrl" method="POST" novalidate>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="form-sender-name">Your Full Name <span class="required-star">*</span></label>
+                  <input type="text" id="form-sender-name" name="name" placeholder="e.g. Alex Morgan" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="form-sender-email">Your Email Address <span class="required-star">*</span></label>
+                  <input type="email" id="form-sender-email" name="_replyto" placeholder="e.g. alex@example.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="form-sender-subject">Subject</label>
+                <input type="text" id="form-sender-subject" name="subject" placeholder="e.g. Internship Opportunity / Hackathon Collaboration">
+              </div>
+
+              <div class="form-group">
+                <label for="form-sender-message">Your Message <span class="required-star">*</span></label>
+                <textarea id="form-sender-message" name="message" rows="4" placeholder="Hello Adithya, I'd like to discuss..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-submit" id="submit-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span id="submit-btn-text">Send Message</span>
+              </button>
+
+              <div id="form-feedback-status" class="form-feedback-box" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      
+      <div class="footer-brand-col">
+        <a href="#hero" class="nav-brand">
+          <span class="brand-sym">&lt;</span>
+          <span class="brand-text">Adithya</span>
+          <span class="brand-sym">/&gt;</span>
+        </a>
+        <p class="footer-tagline">CSE Student &bull; Full-Stack &amp; Flutter Developer &bull; Building &amp; Shipping.</p>
+      </div>
+
+      <div class="footer-nav-col">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#featured">Projects</a>
+        <a href="#repos">Repositories</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-meta-col">
+        <p>&copy; <span id="copyright-year">2026</span> Adithya. All rights reserved.</p>
+        <div class="footer-social-icons">
+          <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile (@Adi140108)"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:adithyam357@gmail.com" aria-label="Email Adithya"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- RESUME & CREDENTIALS MODAL -->
+  <div id="resume-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3 id="resume-modal-title"><i class="fa-regular fa-file-lines text-amber"></i> Resume &amp; Credentials</h3>
+        <button class="modal-close-btn" id="close-resume-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          I am currently a Computer Science Engineering student specializing in Full-Stack Web Development, Flutter Cross-Platform Apps, and AI Integrations.
+        </p>
+        <div class="resume-highlights-box">
+          <h4>Key Qualifications:</h4>
+          <ul>
+            <li><strong>Education:</strong> Bachelor of Engineering in Computer Science &amp; Engineering</li>
+            <li><strong>Hackathon Experience:</strong> SIH 2026 Internal Selection Qualified, GDG TechSprint Top 10 Finalist, Odoo &times; NMIT</li>
+            <li><strong>Key Tech:</strong> Dart, Flutter, JavaScript, TypeScript, React, Astro, Python, REST APIs</li>
+            <li><strong>Open Source:</strong> 16+ active repositories on GitHub</li>
+          </ul>
+        </div>
+        <p class="modal-prompt">
+          To receive an updated PDF resume tailored to your team's stack or job description:
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="mailto:adithyam357@gmail.com?subject=Resume%20Request%20for%20Adithya&body=Hi%20Adithya,%20we%20reviewed%20your%20portfolio%20and%20would%20like%20to%20request%20your%20updated%20resume%20for%20a%20role/project." class="btn btn-primary">
+          <i class="fa-solid fa-paper-plane"></i> Request Resume via Email
+        </a>
+        <button class="btn btn-glass" id="modal-close-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div id="project-detail-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3 id="project-modal-title"><i class="fa-solid fa-layer-group text-amber"></i> <span id="pm-title">Project Details</span></h3>
+        <button class="modal-close-btn" id="close-project-modal" aria-label="Close project modal">&times;</button>
+      </div>
+      <div class="modal-body" id="pm-body">
+        <!-- Injected dynamically by script.js -->
+      </div>
+      <div class="modal-footer" id="pm-footer">
+        <!-- Injected dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-notification" class="toast-card glass-card" role="alert" aria-live="assertive">
+    <div class="toast-icon-box"><i class="fa-solid fa-circle-check text-emerald"></i></div>
+    <span class="toast-msg-text" id="toast-text">Notification</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
