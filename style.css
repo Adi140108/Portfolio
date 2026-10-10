@@ -1859,6 +1859,590 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* --------------------------------------------------------------------------
+   14. Case Study Specific Modules (MediKiosk & IP-Sakti)
+   -------------------------------------------------------------------------- */
+.case-study-nav {
+  position: sticky;
+  top: 1.25rem;
+  z-index: 100;
+  margin-bottom: 2rem;
+}
+
+.case-study-hero {
+  padding: 3rem 0 2rem;
+  position: relative;
+}
+
+.case-study-header-card {
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.case-study-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-violet), var(--accent-cyan));
+}
+
+.case-study-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.case-study-breadcrumbs a {
+  color: var(--accent-amber);
+  text-decoration: none;
+  transition: color var(--motion-fast);
+}
+
+.case-study-breadcrumbs a:hover {
+  color: var(--accent-gold);
+  text-decoration: underline;
+}
+
+.case-study-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-high);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.case-study-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-body);
+  max-width: 860px;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.case-study-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--panel-border);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.meta-value {
+  font-weight: 600;
+  color: var(--text-high);
+  font-size: 0.95rem;
+}
+
+/* Callout Boxes */
+.callout-box {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  margin: 1.75rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.callout-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.callout-safety {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  color: #fecdd3;
+}
+.callout-safety .callout-icon { color: var(--accent-rose); }
+
+.callout-legal {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fde68a;
+}
+.callout-legal .callout-icon { color: var(--accent-amber); }
+
+.callout-info {
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #cffafe;
+}
+.callout-info .callout-icon { color: var(--accent-cyan); }
+
+/* Case Study Main Layout */
+.case-study-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin: 2.5rem 0 5rem;
+}
+
+.case-study-sidebar {
+  position: sticky;
+  top: 6rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+}
+
+.toc-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-high);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.toc-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: all var(--motion-fast);
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xs);
+}
+
+.toc-link:hover, .toc-link.active {
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.1);
+  transform: translateX(4px);
+}
+
+.case-study-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.case-section {
+  scroll-margin-top: 6.5rem;
+}
+
+.case-section-header {
+  margin-bottom: 1.5rem;
+}
+
+.case-section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.case-section-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-high);
+}
+
+.case-text {
+  font-size: 1rem;
+  color: var(--text-body);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.case-text strong {
+  color: var(--text-high);
+}
+
+/* Workflow Step Grid */
+.workflow-step-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.75rem 0;
+}
+
+.workflow-step-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  position: relative;
+  transition: all var(--motion-smooth);
+}
+
+.workflow-step-card:hover {
+  border-color: var(--panel-border-hover);
+  transform: translateY(-3px);
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
+.step-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-high);
+  margin-bottom: 0.5rem;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Architecture Diagrams in HTML/CSS */
+.arch-diagram-wrapper {
+  margin: 2rem 0;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: rgba(10, 16, 32, 0.85);
+  border: 1px solid var(--panel-border);
+  overflow-x: auto;
+}
+
+.arch-canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 680px;
+}
+
+.arch-layer {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  background: rgba(18, 27, 50, 0.5);
+  position: relative;
+}
+
+.arch-layer-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-nodes-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.arch-node {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: rgba(22, 33, 62, 0.9);
+  border: 1px solid var(--panel-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: all var(--motion-fast);
+}
+
+.arch-node:hover {
+  border-color: var(--accent-amber);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.arch-node-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-high);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-node-sub {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+}
+
+.arch-node-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.arch-connector-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--accent-amber);
+  font-size: 1.2rem;
+  height: 20px;
+}
+
+/* OPD Split View (MediKiosk) */
+.opd-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.opd-card {
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+}
+
+.opd-card.general-opd {
+  border-top: 4px solid var(--accent-cyan);
+}
+
+.opd-card.ayurvedic-opd {
+  border-top: 4px solid var(--accent-amber);
+}
+
+.opd-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-high);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.opd-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.opd-list li {
+  font-size: 0.92rem;
+  color: var(--text-body);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+.opd-list li i {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Engineering Decisions Grid */
+.tradeoff-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 1.75rem 0;
+}
+
+.tradeoff-card {
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+}
+
+.tradeoff-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tradeoff-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-high);
+}
+
+.tradeoff-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--panel-border);
+}
+
+.tradeoff-box {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.tradeoff-box-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.tradeoff-box.decision { border-left: 3px solid var(--accent-emerald); }
+.tradeoff-box.decision .tradeoff-box-title { color: var(--accent-emerald); }
+
+.tradeoff-box.why { border-left: 3px solid var(--accent-amber); }
+.tradeoff-box.why .tradeoff-box-title { color: var(--accent-amber); }
+
+/* Tech Stack Table */
+.tech-table-container {
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--panel-border);
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: var(--panel-bg);
+  text-align: left;
+}
+
+.tech-table th {
+  background: rgba(14, 21, 40, 0.95);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-high);
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.tech-table td {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-body);
+}
+
+.tech-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.status-badge-verified {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+}
+
+.status-badge-intended {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+}
+
+/* Responsive Case Study Rules */
+@media (max-width: 992px) {
+  .case-study-layout {
+    grid-template-columns: 1fr;
+  }
+  .case-study-sidebar {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  .opd-split-grid {
+    grid-template-columns: 1fr;
+  }
+  .tradeoff-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-study-header-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .case-study-title {
+    font-size: 1.85rem;
+  }
+  .case-study-meta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .workflow-step-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .case-study-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1867,3 +2451,4 @@ h1, h2, h3, h4, h5, h6 {
     scroll-behavior: auto !important;
   }
 }
+

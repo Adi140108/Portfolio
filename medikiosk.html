@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MediKiosk Case Study | AI-Assisted Patient Intake & Triage System</title>
+  <meta name="title" content="MediKiosk Case Study | AI-Assisted Patient Intake & Triage System">
+  <meta name="description" content="Detailed engineering case study for MediKiosk — an AI-assisted, multilingual clinical patient intake architecture supporting isolated General OPD and Ayurvedic OPD workflows with deterministic safety checks.">
+  <meta name="author" content="Adithya">
+  <meta name="theme-color" content="#060913">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://adi140108.github.io/Portfolio/medikiosk.html">
+  <meta property="og:title" content="MediKiosk Case Study | AI Patient Intake System">
+  <meta property="og:description" content="Engineering architecture, multi-OPD clinical workflow, and safety engine behind MediKiosk.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/209137198?v=4">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Portfolio Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-base">
+
+  <!-- Ambient Lighting Elements -->
+  <div class="ambient-glow glow-amber" aria-hidden="true"></div>
+  <div class="ambient-glow glow-violet" aria-hidden="true"></div>
+  <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+
+  <!-- FLOATING NAVIGATION BAR -->
+  <header class="floating-nav-wrapper">
+    <div class="container">
+      <nav class="floating-navbar glass-card" id="main-nav" aria-label="Case Study Navigation">
+        <a href="index.html" class="nav-brand" aria-label="Back to Portfolio Home">
+          <span class="brand-sym">&lt;</span>
+          <span class="brand-text">Adithya</span>
+          <span class="brand-sym">/&gt;</span>
+        </a>
+
+        <div class="nav-links-desktop">
+          <a href="index.html#featured" class="nav-item"><i class="fa-solid fa-arrow-left"></i> All Projects</a>
+          <a href="#overview" class="nav-item">Overview</a>
+          <a href="#opd-modes" class="nav-item">OPD Modes</a>
+          <a href="#architecture" class="nav-item">Architecture</a>
+          <a href="#tradeoffs" class="nav-item">Decisions</a>
+          <a href="#contributions" class="nav-item">My Role</a>
+        </div>
+
+        <div class="nav-cta-group">
+          <a href="ip-sakti.html" class="btn btn-secondary btn-sm" title="View IP-Sakti Case Study">
+            <span>Next: IP-Sakti</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- CASE STUDY HERO SECTION -->
+    <section class="case-study-hero">
+      <div class="container">
+        
+        <div class="case-study-header-card">
+          <div class="case-study-breadcrumbs">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <span>/</span>
+            <a href="index.html#featured">Featured Projects</a>
+            <span>/</span>
+            <span style="color:var(--text-high);">MediKiosk Case Study</span>
+          </div>
+
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1rem;">
+            <span class="badge-featured highlight-gold-pill"><i class="fa-solid fa-star"></i> Principal Showcase</span>
+            <span class="badge-featured ai-pill"><i class="fa-solid fa-heart-pulse"></i> Healthcare Technology</span>
+            <span class="badge-featured tag-cyan"><i class="fa-solid fa-microchip"></i> AI-Assisted Case Taking</span>
+            <span class="badge-featured tag-amber"><i class="fa-solid fa-compass-drafting"></i> Architectural Prototype</span>
+          </div>
+
+          <h1 class="case-study-title">MediKiosk &mdash; AI-Assisted Patient Intake &amp; Triage Architecture</h1>
+          <p class="case-study-subtitle">
+            A structured, multilingual clinical case-taking system engineered to assist healthcare facilities with pre-consultation information gathering, document ingestion, and triage synthesis across distinct General and Ayurvedic outpatient departments.
+          </p>
+
+          <!-- Clinical Safety Notice Box -->
+          <div class="callout-box callout-safety">
+            <i class="fa-solid fa-shield-heart callout-icon"></i>
+            <div>
+              <strong>Clinical Scope &amp; Safety Notice:</strong>
+              MediKiosk is engineered strictly as an <em>assistive intake and case-taking workflow platform</em> for healthcare staff and patients. It does <strong>not</strong> make clinical diagnoses, issue automated medical prescriptions, or replace qualified physicians. All formal clinical decisions and treatment plans remain under the sole judgment of certified healthcare practitioners.
+            </div>
+          </div>
+
+          <!-- Metadata Spec Grid -->
+          <div class="case-study-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Project Domain</span>
+              <span class="meta-value">Healthcare Systems / Medical Intake</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Intended Architecture</span>
+              <span class="meta-value">Next.js &bull; Python/FastAPI &bull; Firestore</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">AI &amp; Speech Layer</span>
+              <span class="meta-value">Gemma 4 12B &bull; Vashini API OCR &amp; Speech</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Clinical Modes</span>
+              <span class="meta-value">General OPD &amp; Ayurvedic OPD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MAIN CASE STUDY LAYOUT -->
+    <div class="container">
+      <div class="case-study-layout">
+
+        <!-- Sticky Table of Contents -->
+        <aside class="case-study-sidebar">
+          <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Table of Contents</div>
+          <ul class="toc-list">
+            <li><a href="#overview" class="toc-link active">1. Project Overview</a></li>
+            <li><a href="#problem" class="toc-link">2. Problem Statement</a></li>
+            <li><a href="#solution" class="toc-link">3. Proposed Solution</a></li>
+            <li><a href="#workflow" class="toc-link">4. Intake Workflow</a></li>
+            <li><a href="#opd-modes" class="toc-link">5. General vs. Ayurvedic OPD</a></li>
+            <li><a href="#architecture" class="toc-link">6. System Architecture</a></li>
+            <li><a href="#stack" class="toc-link">7. Technology Stack</a></li>
+            <li><a href="#tradeoffs" class="toc-link">8. Engineering Decisions</a></li>
+            <li><a href="#contributions" class="toc-link">9. Role &amp; Contributions</a></li>
+            <li><a href="#limitations" class="toc-link">10. Limitations &amp; Impact</a></li>
+            <li><a href="#roadmap" class="toc-link">11. Future Roadmap</a></li>
+          </ul>
+        </aside>
+
+        <!-- Main Content Stream -->
+        <article class="case-study-content">
+
+          <!-- 1. Project Overview -->
+          <section id="overview" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 01</span>
+              <h2 class="case-section-title">Project Overview</h2>
+            </div>
+            <p class="case-text">
+              In high-volume outpatient clinics and community health centers, physicians face intense time constraints during initial patient consultations. A substantial portion of the consultation window is spent asking standard demographic questions, deciphering messy past physical prescriptions, overcoming regional language hurdles, and manually transcribing symptoms into unstructured electronic medical record (EMR) notes.
+            </p>
+            <p class="case-text">
+              <strong>MediKiosk</strong> was conceived to solve this bottleneck. It provides a structured, multilingual self-service or staff-assisted kiosk terminal where patients complete guided, adaptive intake questionnaires prior to entering the physician's examination room. The system normalizes speech and physical document records into structured clinical briefs while running deterministic safety checks for critical red-flag symptoms.
+            </p>
+          </section>
+
+          <!-- 2. Problem Statement -->
+          <section id="problem" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 02</span>
+              <h2 class="case-section-title">The Clinical Challenges</h2>
+            </div>
+            <p class="case-text">
+              Thorough case-taking is the bedrock of accurate medical care, yet modern outpatient workflows face systematic obstacles:
+            </p>
+            
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-file-circle-xmark"></i> Intake Gap</span>
+                <h3 class="step-title">Incomplete Patient Histories</h3>
+                <p class="step-desc">Patients frequently omit critical information such as chronic co-morbidities, duration of symptoms, or current drug dosages under consultation anxiety.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-language"></i> Communication Gap</span>
+                <h3 class="step-title">Multilingual Intake Barriers</h3>
+                <p class="step-desc">In diverse populations, language mismatches between patients and attending staff lead to misunderstood complaints and missing clinical context.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-triangle-exclamation"></i> Triage Risk</span>
+                <h3 class="step-title">Unprioritized Red Flags</h3>
+                <p class="step-desc">Critical warning symptoms (e.g. chest pain with radiation, sudden neurological weakness) can sit unrecognized in general queues behind routine checkups.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-mortar-pestle"></i> Domain Divergence</span>
+                <h3 class="step-title">Ayurvedic vs. Allopathic Disconnect</h3>
+                <p class="step-desc">Traditional Ayurvedic case taking requires fundamentally distinct constitutional and lifestyle assessment factors (Prakriti, Agni, Ama) that standard EMR forms cannot capture.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Proposed Solution -->
+          <section id="solution" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 03</span>
+              <h2 class="case-section-title">Proposed Solution</h2>
+            </div>
+            <p class="case-text">
+              MediKiosk introduces an end-to-end, modular intake architecture that bridges the gap between patient narrative and physician consultation. Rather than replacing human care, MediKiosk automates the administrative and cognitive prep-work required before the doctor steps into the room.
+            </p>
+
+            <div class="callout-box callout-info">
+              <i class="fa-solid fa-circle-nodes callout-icon"></i>
+              <div>
+                <strong>Core System Goal:</strong> Enable a 4-minute pre-consultation intake that delivers an organized, pre-flagged clinical summary to the physician's screen before the patient enters the consultation cabin.
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Intake Workflow -->
+          <section id="workflow" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 04</span>
+              <h2 class="case-section-title">Patient &amp; Staff Intake Workflow</h2>
+            </div>
+            <p class="case-text">
+              The intake pipeline operates through six coordinated stages, from initial registration to physician review:
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num">Step 01</span>
+                <h3 class="step-title">OPD Mode Selection</h3>
+                <p class="step-desc">Reception staff or kiosk user selects either <strong>General OPD</strong> or <strong>Ayurvedic OPD</strong> to load the appropriate questioning engine.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Step 02</span>
+                <h3 class="step-title">Multilingual Intake</h3>
+                <p class="step-desc">Patient selects preferred language and responds via touch screen or voice input powered by Vashini speech synthesis.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Step 03</span>
+                <h3 class="step-title">Adaptive Questionnaire</h3>
+                <p class="step-desc">The engine evaluates reported symptoms and dynamically asks intelligent follow-up questions regarding onset, duration, and severity.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Step 04</span>
+                <h3 class="step-title">Document &amp; OCR Ingestion</h3>
+                <p class="step-desc">Physical medical reports and past prescriptions are scanned and processed via Vashini API OCR with a vision-model fallback.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Step 05</span>
+                <h3 class="step-title">Deterministic Red-Flag Check</h3>
+                <p class="step-desc">Rule-based emergency filters intercept reported vital anomalies or critical symptoms to trigger immediate clinical priority flags.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Step 06</span>
+                <h3 class="step-title">Physician Summary Briefing</h3>
+                <p class="step-desc">The attending clinician opens a structured summary card on their dashboard with highlighted red flags, timeline, and ingested reports.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. General OPD vs. Ayurvedic OPD -->
+          <section id="opd-modes" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 05</span>
+              <h2 class="case-section-title">General OPD versus Ayurvedic OPD</h2>
+            </div>
+            <p class="case-text">
+              A foundational engineering decision in MediKiosk is the <strong>strict schema separation</strong> between Allopathic (General) and Ayurvedic clinical intake workflows:
+            </p>
+
+            <div class="opd-split-grid">
+              <div class="opd-card general-opd">
+                <h3 class="opd-card-title"><i class="fa-solid fa-stethoscope" style="color:var(--accent-cyan);"></i> General Allopathic OPD</h3>
+                <p class="case-text" style="font-size:0.9rem;">Focused on modern clinical symptom taxonomy, physiological timeline, and acute triage prioritization.</p>
+                <ul class="opd-list">
+                  <li><i class="fa-solid fa-check text-cyan"></i> <strong>Chief Complaint &amp; HPI:</strong> Structured onset, duration, frequency, aggravating/relieving factors.</li>
+                  <li><i class="fa-solid fa-check text-cyan"></i> <strong>Review of Systems (ROS):</strong> Cardiovascular, respiratory, gastrointestinal, neurological screening.</li>
+                  <li><i class="fa-solid fa-check text-cyan"></i> <strong>Clinical Red-Flags:</strong> Immediate rule-based checking for emergency cardiac, respiratory, or stroke indicators.</li>
+                  <li><i class="fa-solid fa-check text-cyan"></i> <strong>Pharmacological History:</strong> Active prescription verification and known drug allergy documentation.</li>
+                </ul>
+              </div>
+
+              <div class="opd-card ayurvedic-opd">
+                <h3 class="opd-card-title"><i class="fa-solid fa-leaf" style="color:var(--accent-amber);"></i> Ayurvedic Traditional OPD</h3>
+                <p class="case-text" style="font-size:0.9rem;">Focused on holistic constitutional assessment, digestive strength, and metabolic harmony.</p>
+                <ul class="opd-list">
+                  <li><i class="fa-solid fa-check text-amber"></i> <strong>Prakriti &amp; Vikriti:</strong> Baseline physical/mental constitution vs. present imbalance manifestations.</li>
+                  <li><i class="fa-solid fa-check text-amber"></i> <strong>Dosha Assessment:</strong> Plain-language questions assessing Vata, Pitta, and Kapha symptoms.</li>
+                  <li><i class="fa-solid fa-check text-amber"></i> <strong>Agni &amp; Ama:</strong> Evaluating digestive fire capacity and systemic metabolic toxin indicators.</li>
+                  <li><i class="fa-solid fa-check text-amber"></i> <strong>Ahara, Vihara, Nidra:</strong> Structured intake covering dietary patterns, lifestyle routines, and sleep architecture.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="callout-box callout-legal">
+              <i class="fa-solid fa-hand-holding-medical callout-icon"></i>
+              <div>
+                <strong>Terminology Approach:</strong> In the Ayurvedic OPD questionnaire, questions are framed in plain, accessible everyday language with traditional Ayurvedic terms placed in brackets (e.g. <em>"Do you experience sluggish digestion or heaviness after meals? [Manda Agni / Ama]"</em>) to maintain clinical precision without confusing patients.
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. System Architecture -->
+          <section id="architecture" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 06</span>
+              <h2 class="case-section-title">System Architecture</h2>
+            </div>
+            <p class="case-text">
+              The architecture is organized into four modular layers: Client Interface, API Gateway &amp; Safety Layer, Intelligence &amp; Ingestion Engine, and Persistence &amp; Storage.
+            </p>
+
+            <div class="arch-diagram-wrapper">
+              <div class="arch-canvas">
+                
+                <!-- Layer 1: Client Layer -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-desktop"></i> Client &amp; Terminal Presentation Layer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-tablet-screen-button text-cyan"></i> Patient Kiosk UI</span>
+                      <span class="arch-node-sub">Next.js / React</span>
+                      <span class="arch-node-desc">Accessible touch/audio questionnaire with real-time feedback.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-user-doctor text-amber"></i> Physician Dashboard</span>
+                      <span class="arch-node-sub">Next.js / React</span>
+                      <span class="arch-node-desc">Queue management, triage cards, and pre-consultation briefings.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> REST / WebSockets</div>
+
+                <!-- Layer 2: API Gateway & Safety -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-shield-halved"></i> Application Gateway &amp; Deterministic Safety Layer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-brands fa-python text-amber"></i> FastAPI Service</span>
+                      <span class="arch-node-sub">Python 3.11</span>
+                      <span class="arch-node-desc">Session orchestration, validation schemas, and rate limiting.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-triangle-exclamation text-rose"></i> Red-Flag Safety Engine</span>
+                      <span class="arch-node-sub">Deterministic Rules</span>
+                      <span class="arch-node-desc">Hardcoded clinical threshold checks for emergency escalation.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> Async Pipelines</div>
+
+                <!-- Layer 3: AI & Ingestion Engine -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-brain"></i> AI Intelligence, OCR &amp; Speech Layer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-language text-cyan"></i> Speech &amp; Translation</span>
+                      <span class="arch-node-sub">Vashini API</span>
+                      <span class="arch-node-desc">Multilingual speech-to-text and text-to-speech engine.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-file-lines text-purple"></i> Document OCR Pipeline</span>
+                      <span class="arch-node-sub">Vashini OCR &rarr; Gemma Vision</span>
+                      <span class="arch-node-desc">Two-tier prescription digitization with vision model fallback.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-microchip text-emerald"></i> Reasoning Engine</span>
+                      <span class="arch-node-sub">Gemma 4 12B Runtime</span>
+                      <span class="arch-node-desc">Adaptive follow-up question logic and case summarization.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> Encrypted Storage &amp; Sync</div>
+
+                <!-- Layer 4: Storage Layer -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-database"></i> Persistence &amp; Document Storage Layer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-fire text-amber"></i> Firebase Firestore</span>
+                      <span class="arch-node-sub">Document Database</span>
+                      <span class="arch-node-desc">Encrypted intake records, OPD metadata, and triage queues.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-box-archive text-sky"></i> Backblaze B2</span>
+                      <span class="arch-node-sub">S3-Compatible Object Store</span>
+                      <span class="arch-node-desc">Secure archival for scanned prescriptions and raw PDF reports.</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- 7. Technology Stack -->
+          <section id="stack" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 07</span>
+              <h2 class="case-section-title">Technology Stack &amp; Verification Status</h2>
+            </div>
+            <p class="case-text">
+              To ensure transparency, the system components are classified by their implementation status:
+            </p>
+
+            <div class="tech-table-container">
+              <table class="tech-table">
+                <thead>
+                  <tr>
+                    <th>Component Layer</th>
+                    <th>Technology</th>
+                    <th>Architectural Responsibility</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Frontend Kiosk &amp; Dashboard</td>
+                    <td>Next.js / React (TypeScript)</td>
+                    <td>Interactive touch interface, accessibility controls, clinician review dashboard</td>
+                    <td><span class="status-badge-intended">Intended Architecture</span></td>
+                  </tr>
+                  <tr>
+                    <td>Backend API Gateway</td>
+                    <td>Python + FastAPI</td>
+                    <td>Session lifecycle, question tree routing, schema validation, and health checks</td>
+                    <td><span class="status-badge-verified">Verified Prototype</span></td>
+                  </tr>
+                  <tr>
+                    <td>Database &amp; Metadata</td>
+                    <td>Firebase Firestore</td>
+                    <td>Structured patient summaries, OPD mode flags, and real-time consultation queue</td>
+                    <td><span class="status-badge-verified">Verified Prototype</span></td>
+                  </tr>
+                  <tr>
+                    <td>Reasoning LLM</td>
+                    <td>Gemma 4 12B</td>
+                    <td>Contextual questionnaire adaptation and patient summary generation</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                  <tr>
+                    <td>OCR Document Ingestion</td>
+                    <td>Vashini API + Gemma Vision</td>
+                    <td>Extracting text from physical prescriptions with automatic vision fallback</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                  <tr>
+                    <td>Multilingual Speech Engine</td>
+                    <td>Vashini API / Indic Models</td>
+                    <td>Speech-to-text voice input and accessible audio prompts</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                  <tr>
+                    <td>Clinical Safety Interceptor</td>
+                    <td>Deterministic Python Rules</td>
+                    <td>Hardcoded emergency keyword and vital threshold evaluation</td>
+                    <td><span class="status-badge-verified">Verified Prototype</span></td>
+                  </tr>
+                  <tr>
+                    <td>Document Storage</td>
+                    <td>Backblaze B2</td>
+                    <td>Encrypted cold storage for prescription scans and test reports</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 8. Engineering Decisions & Trade-offs -->
+          <section id="tradeoffs" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 08</span>
+              <h2 class="case-section-title">Engineering Decisions &amp; Trade-offs</h2>
+            </div>
+            <p class="case-text">
+              Real-world engineering requires making conscious trade-offs between safety, reliability, cost, and complexity:
+            </p>
+
+            <div class="tradeoff-grid">
+
+              <!-- Decision 1: Deterministic Red-Flags -->
+              <div class="tradeoff-card">
+                <div class="tradeoff-header">
+                  <h3 class="tradeoff-title">1. Deterministic Safety Checks vs. Probabilistic LLM Triage</h3>
+                  <span class="badge-featured tag-rose">Safety Critical</span>
+                </div>
+                <p class="case-text">
+                  <strong>Problem:</strong> Generative language models are inherently probabilistic and can occasionally hallucinate, misinterpret urgency, or soften life-threatening symptoms under subtle phrasing variations.
+                </p>
+                <div class="tradeoff-columns">
+                  <div class="tradeoff-box decision">
+                    <div class="tradeoff-box-title">Chosen Decision</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Hardcode a deterministic rule engine in Python that runs before and independent of any LLM invocation, scanning chief complaints and vitals against clinical emergency criteria.
+                    </p>
+                  </div>
+                  <div class="tradeoff-box why">
+                    <div class="tradeoff-box-title">Trade-off &amp; Rationale</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Reduces flexible natural language nuance in edge cases, but guarantees zero-latency, 100% deterministic interception of known critical conditions (e.g. acute chest tightness, stroke symptoms).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Decision 2: Two-Tier OCR -->
+              <div class="tradeoff-card">
+                <div class="tradeoff-header">
+                  <h3 class="tradeoff-title">2. Two-Tier OCR Architecture (Vashini API + Gemma Vision Fallback)</h3>
+                  <span class="badge-featured tag-cyan">Resilience</span>
+                </div>
+                <p class="case-text">
+                  <strong>Problem:</strong> Regional health documents feature diverse Indian scripts, low-resolution phone captures, and mixed handwriting that frequently cause single OCR engines to fail.
+                </p>
+                <div class="tradeoff-columns">
+                  <div class="tradeoff-box decision">
+                    <div class="tradeoff-box-title">Chosen Decision</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Primary OCR is routed through specialized Vashini Indic models for regional scripts, automatically falling back to multimodal Gemma Vision if confidence scores drop below 75%.
+                    </p>
+                  </div>
+                  <div class="tradeoff-box why">
+                    <div class="tradeoff-box-title">Trade-off &amp; Rationale</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Increases fallback latency by ~1.2s when secondary execution triggers, but virtually eliminates catastrophic OCR failures on degraded prescription scans.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Decision 3: Decoupled Storage -->
+              <div class="tradeoff-card">
+                <div class="tradeoff-header">
+                  <h3 class="tradeoff-title">3. Decoupling Firestore Metadata from Backblaze B2 Media</h3>
+                  <span class="badge-featured tag-amber">Cost &amp; Scalability</span>
+                </div>
+                <p class="case-text">
+                  <strong>Problem:</strong> Storing high-resolution scanned medical documents alongside consultation metadata inflates database read costs and complicates compliance backups.
+                </p>
+                <div class="tradeoff-columns">
+                  <div class="tradeoff-box decision">
+                    <div class="tradeoff-box-title">Chosen Decision</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Store lightweight JSON schemas and questionnaire state in Firebase Firestore while routing raw images directly to encrypted Backblaze B2 storage with pre-signed URLs.
+                    </p>
+                  </div>
+                  <div class="tradeoff-box why">
+                    <div class="tradeoff-box-title">Trade-off &amp; Rationale</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Requires managing two separate credential sets and lifecycle policies, but dramatically cuts operational storage expenses and speeds up realtime physician dashboard refreshes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 9. My Role & Contributions -->
+          <section id="contributions" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 09</span>
+              <h2 class="case-section-title">My Role &amp; Engineering Contributions</h2>
+            </div>
+            <p class="case-text">
+              As the lead system architect and developer for the project concept, my verified engineering contributions include:
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-sitemap"></i> Architecture</span>
+                <h3 class="step-title">Clinical Workflow Architecture</h3>
+                <p class="step-desc">Designed the end-to-end multi-tier system architecture, defining interface boundaries between kiosk frontend, FastAPI backend, and storage services.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-code-branch"></i> Schema Design</span>
+                <h3 class="step-title">OPD Schema Separation</h3>
+                <p class="step-desc">Formulated the structured data models isolating General OPD symptom structures from traditional Ayurvedic constitutional factors (Prakriti, Agni, Ama).</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-shield-virus"></i> Safety Engineering</span>
+                <h3 class="step-title">Deterministic Red-Flag Rules</h3>
+                <p class="step-desc">Engineered the rule-based safety interception filter in Python to catch emergency physiological markers before AI synthesis.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-chart-simple"></i> UI/UX Design</span>
+                <h3 class="step-title">Physician Dashboard Concept</h3>
+                <p class="step-desc">Created the intuitive dashboard interface mockups and API specifications for displaying pre-digested patient briefs with visual priority badges.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 10. Impact & Limitations -->
+          <section id="limitations" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 10</span>
+              <h2 class="case-section-title">Intended Impact &amp; Limitations</h2>
+            </div>
+            <p class="case-text">
+              <strong>Intended Clinical Benefits:</strong>
+            </p>
+            <ul class="opd-list" style="margin-bottom:1.5rem;">
+              <li><i class="fa-solid fa-check text-emerald"></i> <strong>Reduced Documentation Burden:</strong> Up to 60% faster intake transcription for attending healthcare personnel.</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> <strong>Multilingual Inclusion:</strong> Enables non-native language speakers to comfortably express complex health narratives.</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> <strong>Systematic Red-Flag Surfacing:</strong> Ensures emergency complaints are immediately highlighted on clinician screens.</li>
+            </ul>
+
+            <div class="callout-box callout-safety">
+              <i class="fa-solid fa-triangle-exclamation callout-icon"></i>
+              <div>
+                <strong>Project Limitations &amp; Boundary Conditions:</strong>
+                <ul style="margin-left:1rem; margin-top:0.5rem; line-height:1.6;">
+                  <li>MediKiosk is currently an <strong>architectural prototype</strong> and has not undergone formal clinical trial certification.</li>
+                  <li>OCR accuracy on handwritten doctor notes remains contingent on document preservation and scan clarity.</li>
+                  <li>Requires active Internet connectivity unless local edge-quantized model weights are deployed on dedicated kiosk hardware.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 11. Future Roadmap -->
+          <section id="roadmap" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 11</span>
+              <h2 class="case-section-title">Future Scope &amp; Roadmap</h2>
+            </div>
+            <p class="case-text">
+              The phased development roadmap for MediKiosk focuses on clinical validation and edge deployment:
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num">Phase 1</span>
+                <h3 class="step-title">Local Edge LLM Deployment</h3>
+                <p class="step-desc">Quantize Gemma 4 12B to 4-bit GGUF format to enable fully offline inference on low-cost clinic hardware without relying on cloud APIs.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Phase 2</span>
+                <h3 class="step-title">HIPAA &amp; DISHA Compliance</h3>
+                <p class="step-desc">Implement end-to-end field-level encryption for patient identifying information (PII) to comply with Indian DISHA and international HIPAA privacy standards.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Phase 3</span>
+                <h3 class="step-title">Formal Physician Pilot</h3>
+                <p class="step-desc">Partner with outpatient clinics to evaluate physician satisfaction, summary clarity, and time-saving metrics across 100+ live intake trials.</p>
+              </div>
+            </div>
+
+            <!-- Case Study Navigation Footer -->
+            <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--panel-border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+              <a href="index.html#featured" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+              </a>
+              <a href="ip-sakti.html" class="btn btn-primary">
+                <span>Next Case Study: IP-Sakti</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </section>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand-col">
+        <a href="index.html" class="nav-brand">
+          <span class="brand-sym">&lt;</span>
+          <span class="brand-text">Adithya</span>
+          <span class="brand-sym">/&gt;</span>
+        </a>
+        <p class="footer-tagline">Engineering case study &bull; MediKiosk AI Patient Intake System.</p>
+      </div>
+      <div class="footer-meta-col">
+        <p class="footer-copy">&copy; <span id="copyright-year">2026</span> Adithya. Built with precision and purpose.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

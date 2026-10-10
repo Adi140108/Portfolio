@@ -19,14 +19,14 @@ const CACHED_REPOS = [
     updated_at: '2026-09-27T17:12:19Z'
   },
   {
-    name: 'DayFlow-BitBros-',
-    description: 'Engineered for Odoo X NMIT 2026 Hackathon — Mobile productivity and task orchestration app built with Dart and Flutter.',
-    language: 'Dart',
+    name: 'SmartQ-Stadium',
+    description: 'Smart stadium queue and resource coordination system for high-throughput public venues.',
+    language: 'JavaScript',
     stars: 0,
     forks: 0,
-    html_url: 'https://github.com/Adi140108/DayFlow-BitBros-',
+    html_url: 'https://github.com/Adi140108/SmartQ-Stadium',
     homepage: '',
-    updated_at: '2026-08-22T12:33:16Z'
+    updated_at: '2026-07-15T10:14:22Z'
   },
   {
     name: 'CODEWARS-4.0',
@@ -175,41 +175,41 @@ const PROJECT_DETAILS = {
       { text: 'GitHub Repository', url: 'https://github.com/Adi140108/CODEWARS-4.0', icon: 'fa-brands fa-github' }
     ]
   },
-  dayflow: {
-    title: 'DayFlow &mdash; BitBros (Odoo &times; NMIT 2026)',
-    status: 'Hackathon Project',
-    badgeClass: 'hackathon-pill',
-    problem: 'Enterprise task scheduling often lacks a focused, clutter-free mobile experience for frontline team members needing quick shift synchronization.',
-    solution: 'Engineered as part of team BitBros for the Odoo X NMIT 2026 Hackathon. Created a Flutter mobile application focusing on intuitive daily task scheduling, state tracking, and seamless routine management.',
-    stack: ['Dart', 'Flutter Cross-Platform', 'Mobile Architecture', 'Odoo Hackathon 2026'],
-    contribution: 'Mobile UI development in Flutter, task flow state management, and hackathon presentation.',
+  medikiosk: {
+    title: 'MediKiosk &mdash; AI Patient Case-Taking &amp; Triage System',
+    status: 'Principal Showcase &bull; Prototype &amp; Architecture',
+    badgeClass: 'ai-pill',
+    problem: 'Outpatient consultations suffer from incomplete patient histories, severe language barriers, and lack of structured symptom intake before clinicians evaluate cases.',
+    solution: 'Engineered an AI-assisted clinical intake architecture featuring dedicated General OPD and Ayurvedic OPD flows, multilingual voice/text input, Vashini API OCR document ingestion, and deterministic clinical red-flag safety checks.',
+    stack: ['Next.js / React', 'Python / FastAPI', 'Firebase Firestore', 'Gemma 4 12B', 'Vashini API OCR', 'Backblaze B2'],
+    contribution: 'Clinical intake workflow design, multi-OPD questionnaire schema separation, FastAPI endpoint specifications, and physician dashboard concept.',
     links: [
-      { text: 'GitHub Repository', url: 'https://github.com/Adi140108/DayFlow-BitBros-', icon: 'fa-brands fa-github' }
+      { text: 'Read Full Case Study', url: 'medikiosk.html', icon: 'fa-solid fa-book-open' }
     ]
   },
   ipsakti: {
-    title: 'IP-Sakti &mdash; Smart India Hackathon (Problem Statement 45)',
-    status: 'In Active Development (SIH 2026)',
+    title: 'IP-Sakti &mdash; Traditional Knowledge IP Discovery (SIH PS-45)',
+    status: 'Principal Showcase &bull; SIH Internal Qualified',
     badgeClass: 'sih-pill',
-    problem: 'India’s rich repository of traditional knowledge, indigenous medical remedies, and cultural practices lacks accessible digitized verification and formal intellectual property protections.',
-    solution: 'Developing IP-Sakti for Smart India Hackathon 2026 (Internal University Qualified). Focuses on building an indexed catalog for traditional knowledge assets, validation pipelines, and IP classification workflows.',
-    stack: ['SIH 2026 PS-45', 'Web Architecture', 'Database Catalog', 'In Development'],
-    contribution: 'Lead developer for project prototype, workflow mapping, and SIH internal qualification presentation.',
+    problem: 'India’s vast traditional knowledge repositories lack unified, source-aware prior-art search tools, leaving cultural heritage vulnerable to biopiracy and improper patent claims.',
+    solution: 'Developed for Smart India Hackathon 2026 (Problem Statement 45 - University Internal Round Qualified). Integrates source-aware retrieval across TKDL, IP India records, and statutory legislation with immutable citation chains.',
+    stack: ['SIH 2026 PS-45', 'Python / FastAPI', 'Vector RAG', 'Gemma 4 12B', 'Firebase Firestore', 'Backblaze B2'],
+    contribution: 'Team lead for SIH Problem Statement 45 decomposition, system architecture design, citation verification workflow, and internal selection pitch.',
     links: [
+      { text: 'Read Full Case Study', url: 'ip-sakti.html', icon: 'fa-solid fa-book-open' },
       { text: 'Author GitHub Profile', url: 'https://github.com/Adi140108', icon: 'fa-brands fa-github' }
     ]
   },
   medimind: {
-    title: 'MediMind-Ai &amp; Sehat-Setu &mdash; Healthcare Suite',
-    status: 'Healthcare Web Platform',
+    title: 'MediMind-Ai &mdash; Preliminary Health Advisory System',
+    status: 'Healthcare AI Web Platform',
     badgeClass: 'ai-pill',
     problem: 'Patients needing preliminary health insights face fragmented tools that lack accessible explanations and seamless triage guidance.',
-    solution: 'Engineered MediMind-Ai utilizing Astro for blazing-fast page loads paired with Sehat-Setu in TypeScript. Provides preliminary AI health queries and transparent connection avenues for patient care.',
-    stack: ['Astro', 'TypeScript', 'Health Tech', 'AI Integrations'],
+    solution: 'Engineered MediMind-Ai utilizing Astro for blazing-fast static delivery paired with modern TypeScript, providing contextual symptom explanations and health awareness workflows.',
+    stack: ['Astro', 'TypeScript', 'Healthcare AI', 'Modular Web Components'],
     contribution: 'Web component structure, client-side routing, and interactive symptom advisory views.',
     links: [
-      { text: 'MediMind-Ai Repository', url: 'https://github.com/Adi140108/MediMind-Ai', icon: 'fa-brands fa-github' },
-      { text: 'Sehat-Setu Repository', url: 'https://github.com/Adi140108/Sehat-Setu', icon: 'fa-solid fa-heart-pulse' }
+      { text: 'MediMind-Ai Repository', url: 'https://github.com/Adi140108/MediMind-Ai', icon: 'fa-brands fa-github' }
     ]
   },
   nexora: {
@@ -218,10 +218,22 @@ const PROJECT_DETAILS = {
     badgeClass: 'analytics-pill',
     problem: 'Student technical clubs need unified dashboards to monitor member metrics, workshop registrations, and club resources.',
     solution: 'Developed an administrative dashboard with modular widget cards, dynamic charts, theme toggles, and responsive layouts for desktop and mobile devices.',
-    stack: ['JavaScript', 'Data Visualization', 'Dashboard Architecture', 'Club Project'],
+    stack: ['JavaScript (ES6+)', 'Data Visualization', 'Dashboard Architecture', 'Club Project'],
     contribution: 'Dashboard layout design, interactive telemetry widgets, and component modularity.',
     links: [
       { text: 'Nexora Dashboard Repository', url: 'https://github.com/Adi140108/Nexora_Dashboard', icon: 'fa-brands fa-github' }
+    ]
+  },
+  sehatsetu: {
+    title: 'Sehat-Setu &mdash; Digital Health &amp; Telemedicine Bridge',
+    status: 'Healthcare Mobile &amp; Web Bridge',
+    badgeClass: 'live-pill',
+    problem: 'Primary healthcare centers and regional clinics lack lightweight, responsive digital appointment coordination channels for underserved communities.',
+    solution: 'Created Sehat-Setu to connect patients with local healthcare providers, streamlining clinic discovery, appointment booking, and care continuity.',
+    stack: ['Dart / Flutter', 'TypeScript', 'REST APIs', 'Health Coordination'],
+    contribution: 'Application layout, API integration contracts, and appointment scheduling UI.',
+    links: [
+      { text: 'Sehat-Setu Repository', url: 'https://github.com/Adi140108/Sehat-Setu', icon: 'fa-brands fa-github' }
     ]
   }
 };

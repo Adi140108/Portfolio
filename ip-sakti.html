@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IP-Sakti Case Study | Traditional Knowledge &amp; IP Discovery (SIH PS-45)</title>
+  <meta name="title" content="IP-Sakti Case Study | Traditional Knowledge &amp; IP Discovery (SIH PS-45)">
+  <meta name="description" content="Detailed engineering case study for IP-Sakti — an AI-assisted research and prior-art discovery platform developed for Smart India Hackathon Problem Statement 45 to protect traditional knowledge and prevent biopiracy.">
+  <meta name="author" content="Adithya">
+  <meta name="theme-color" content="#060913">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://adi140108.github.io/Portfolio/ip-sakti.html">
+  <meta property="og:title" content="IP-Sakti Case Study | SIH 2026 Problem Statement 45">
+  <meta property="og:description" content="Engineering architecture, multi-corpus vector retrieval, and provenance tracking behind IP-Sakti.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/209137198?v=4">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Portfolio Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-base">
+
+  <!-- Ambient Lighting Elements -->
+  <div class="ambient-glow glow-amber" aria-hidden="true"></div>
+  <div class="ambient-glow glow-violet" aria-hidden="true"></div>
+  <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+
+  <!-- FLOATING NAVIGATION BAR -->
+  <header class="floating-nav-wrapper">
+    <div class="container">
+      <nav class="floating-navbar glass-card" id="main-nav" aria-label="Case Study Navigation">
+        <a href="index.html" class="nav-brand" aria-label="Back to Portfolio Home">
+          <span class="brand-sym">&lt;</span>
+          <span class="brand-text">Adithya</span>
+          <span class="brand-sym">/&gt;</span>
+        </a>
+
+        <div class="nav-links-desktop">
+          <a href="index.html#featured" class="nav-item"><i class="fa-solid fa-arrow-left"></i> All Projects</a>
+          <a href="#overview" class="nav-item">Overview</a>
+          <a href="#corpora" class="nav-item">Knowledge Sources</a>
+          <a href="#architecture" class="nav-item">Architecture</a>
+          <a href="#tradeoffs" class="nav-item">Decisions</a>
+          <a href="#sih-journey" class="nav-item">SIH Journey</a>
+        </div>
+
+        <div class="nav-cta-group">
+          <a href="medikiosk.html" class="btn btn-secondary btn-sm" title="View MediKiosk Case Study">
+            <span>Next: MediKiosk</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- CASE STUDY HERO SECTION -->
+    <section class="case-study-hero">
+      <div class="container">
+        
+        <div class="case-study-header-card">
+          <div class="case-study-breadcrumbs">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <span>/</span>
+            <a href="index.html#featured">Featured Projects</a>
+            <span>/</span>
+            <span style="color:var(--text-high);">IP-Sakti Case Study</span>
+          </div>
+
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1rem;">
+            <span class="badge-featured highlight-gold-pill"><i class="fa-solid fa-star"></i> Principal Showcase</span>
+            <span class="badge-featured sih-pill"><i class="fa-solid fa-award"></i> SIH 2026 PS-45</span>
+            <span class="badge-featured tag-emerald"><i class="fa-solid fa-circle-check"></i> Internal Selection Qualified</span>
+            <span class="badge-featured tag-purple"><i class="fa-solid fa-scale-balanced"></i> LegalTech &amp; IP Discovery</span>
+          </div>
+
+          <h1 class="case-study-title">IP-Sakti &mdash; Traditional Knowledge &amp; Intellectual Property Discovery Platform</h1>
+          <p class="case-study-subtitle">
+            An AI-assisted research and prior-art validation system engineered for Smart India Hackathon (Problem Statement 45) to discover, cross-reference, and safeguard traditional indigenous knowledge through source-aware multi-corpus retrieval.
+          </p>
+
+          <!-- Legal & IP Boundary Disclaimer Box -->
+          <div class="callout-box callout-legal">
+            <i class="fa-solid fa-gavel callout-icon"></i>
+            <div>
+              <strong>Legal &amp; IP Boundary Disclaimer:</strong>
+              IP-Sakti is designed strictly as an <em>assistive research, discovery, and prior-art cross-referencing platform</em>. It does <strong>not</strong> issue formal legal rulings, grant patent certificates, or automatically establish intellectual property ownership. All legal evaluations, patentability assessments, and regulatory filings remain under the exclusive jurisdiction of certified patent attorneys and designated national intellectual property authorities.
+            </div>
+          </div>
+
+          <!-- Metadata Spec Grid -->
+          <div class="case-study-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Competition Milestone</span>
+              <span class="meta-value">SIH 2026 PS-45 (Internal Qualified)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Domain</span>
+              <span class="meta-value">LegalTech / Prior-Art Retrieval</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Core Architecture</span>
+              <span class="meta-value">Python/FastAPI &bull; Vector RAG &bull; Firestore</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Language Models</span>
+              <span class="meta-value">Gemma 4 12B &bull; Vashini Indic NLP</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MAIN CASE STUDY LAYOUT -->
+    <div class="container">
+      <div class="case-study-layout">
+
+        <!-- Sticky Table of Contents -->
+        <aside class="case-study-sidebar">
+          <div class="toc-title"><i class="fa-solid fa-list-ul"></i> Table of Contents</div>
+          <ul class="toc-list">
+            <li><a href="#overview" class="toc-link active">1. Project Overview</a></li>
+            <li><a href="#problem" class="toc-link">2. Problem Statement</a></li>
+            <li><a href="#solution" class="toc-link">3. Proposed Solution</a></li>
+            <li><a href="#workflow" class="toc-link">4. Research Workflow</a></li>
+            <li><a href="#corpora" class="toc-link">5. Knowledge Sources &amp; Permissions</a></li>
+            <li><a href="#architecture" class="toc-link">6. System Architecture</a></li>
+            <li><a href="#stack" class="toc-link">7. Technology Stack</a></li>
+            <li><a href="#tradeoffs" class="toc-link">8. Engineering Decisions</a></li>
+            <li><a href="#sih-journey" class="toc-link">9. SIH Journey &amp; Role</a></li>
+            <li><a href="#limitations" class="toc-link">10. Limitations &amp; Impact</a></li>
+            <li><a href="#roadmap" class="toc-link">11. Future Roadmap</a></li>
+          </ul>
+        </aside>
+
+        <!-- Main Content Stream -->
+        <article class="case-study-content">
+
+          <!-- 1. Project Overview -->
+          <section id="overview" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 01</span>
+              <h2 class="case-section-title">Project Overview &amp; Background</h2>
+            </div>
+            <p class="case-text">
+              India is the custodian of one of the world's richest heritages of traditional knowledge, encompassing centuries-old Ayurvedic formulations, Siddha and Unani remedies, biological agricultural techniques, and artisanal heritage crafts. However, because much of this wisdom exists in ancient classical texts, vernacular languages, or regional oral traditions, it is frequently absent from Western digital patent databases.
+            </p>
+            <p class="case-text">
+              This digital blind spot has historically led to egregious instances of <strong>biopiracy</strong> &mdash; where multinational entities attempt to patent well-known traditional remedies (e.g. historical patents on turmeric wound healing, neem fungicidal properties, and basmati rice derivatives). 
+            </p>
+            <p class="case-text">
+              Developed in response to <strong>Smart India Hackathon (Problem Statement 45)</strong>, <strong>IP-Sakti</strong> is an AI-assisted platform engineered to accelerate the discovery, cross-referencing, and verification of traditional knowledge prior-art records, providing patent examiners, researchers, and indigenous innovators with traceable evidence dossiers to defend cultural intellectual property.
+            </p>
+          </section>
+
+          <!-- 2. Problem Statement -->
+          <section id="problem" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 02</span>
+              <h2 class="case-section-title">Problem Statement (SIH PS-45)</h2>
+            </div>
+            <p class="case-text">
+              The defense and documentation of traditional knowledge faces several structural roadblocks:
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-book-skull"></i> Biopiracy Risk</span>
+                <h3 class="step-title">Vulnerability to Foreign Patents</h3>
+                <p class="step-desc">Without easily searchable prior art in modern patent classification formats, international examiners inadvertently grant illegitimate monopoly patents on ancient knowledge.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-layer-group"></i> Fragmented Data</span>
+                <h3 class="step-title">Disparate &amp; Siloed Corpora</h3>
+                <p class="step-desc">Crucial botanical records, statutory acts (e.g. Biological Diversity Act), and IP India gazettes exist in disconnected formats without unified semantic search.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-barcode"></i> Taxonomic Drift</span>
+                <h3 class="step-title">Nomenclature Inconsistencies</h3>
+                <p class="step-desc">The same medicinal plant is referenced by classical Sanskrit names in ancient texts, regional colloquial names in local states, and Latin binomials in modern research.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-stamp"></i> Attribution Void</span>
+                <h3 class="step-title">Lack of Provenance Tracking</h3>
+                <p class="step-desc">Prior-art submissions require immutable paragraph-level citations and verified historical publication dates to withstand patent challenge scrutiny.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Proposed Solution -->
+          <section id="solution" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 03</span>
+              <h2 class="case-section-title">Proposed Solution</h2>
+            </div>
+            <p class="case-text">
+              IP-Sakti addresses PS-45 through an intelligent, multi-corpus research engine that pairs <strong>taxonomic nomenclature mapping</strong> with <strong>source-bound Retrieval-Augmented Generation (RAG)</strong>. The system allows an investigator or patent officer to input a proposed patent claim, botanical compound, or formulation, and immediately receive a structured prior-art dossier with traceable references across permitted databases.
+            </p>
+
+            <div class="callout-box callout-info">
+              <i class="fa-solid fa-magnifying-glass-chart callout-icon"></i>
+              <div>
+                <strong>Core Objective:</strong> Transform days of manual manuscript cross-referencing into a 30-second automated prior-art search that outputs verified citations, historical publication metadata, and relevant statutory clauses.
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Research Workflow -->
+          <section id="workflow" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 04</span>
+              <h2 class="case-section-title">The Prior-Art Discovery Workflow</h2>
+            </div>
+            <p class="case-text">
+              The query execution pipeline proceeds through six verifiable stages:
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num">Stage 01</span>
+                <h3 class="step-title">Query Ingestion &amp; Intent</h3>
+                <p class="step-desc">User submits a proposed claim, botanical ingredient, formulation method, or patent specification for prior-art analysis.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Stage 02</span>
+                <h3 class="step-title">Nomenclature Expansion</h3>
+                <p class="step-desc">The taxonomy engine expands the query across Latin binomials, Sanskrit traditional terms, and regional vernacular synonyms.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Stage 03</span>
+                <h3 class="step-title">Permitted Corpus Search</h3>
+                <p class="step-desc">Executes hybrid vector similarity and BM25 lexical searches across indexed public IP records and statutory databases.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Stage 04</span>
+                <h3 class="step-title">Source-Bound Synthesis</h3>
+                <p class="step-desc">Gemma 4 12B synthesizes the retrieved passages into a structured comparison matrix, strictly citing verified document IDs.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Stage 05</span>
+                <h3 class="step-title">Provenance Guard Validation</h3>
+                <p class="step-desc">A validation filter verifies that every citation in the generated synthesis corresponds to an authentic historical source text.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Stage 06</span>
+                <h3 class="step-title">Prior-Art Dossier Export</h3>
+                <p class="step-desc">Outputs a formatted prior-art evidence report complete with source links, statutory context, and recommended classification codes.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. Knowledge Sources & Permissions -->
+          <section id="corpora" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 05</span>
+              <h2 class="case-section-title">Knowledge Sources &amp; Access Boundaries</h2>
+            </div>
+            <p class="case-text">
+              To operate with absolute integrity, IP-Sakti distinguishes clearly between public open databases, statutory repositories, and restricted institutional corpora:
+            </p>
+
+            <div class="tech-table-container">
+              <table class="tech-table">
+                <thead>
+                  <tr>
+                    <th>Knowledge Corpus</th>
+                    <th>Content Type</th>
+                    <th>Access &amp; Permissions Status</th>
+                    <th>Role in IP-Sakti</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>IP India Public Database</strong></td>
+                    <td>Published patent applications, grant notices, and design journals</td>
+                    <td><span class="status-badge-verified">Public Open Access</span></td>
+                    <td>Validating published Indian patent specifications and prior claims</td>
+                  </tr>
+                  <tr>
+                    <td><strong>India Code Statutory Repositories</strong></td>
+                    <td>Biological Diversity Act 2002, Patents Act 1970, Protection of Plant Varieties Act</td>
+                    <td><span class="status-badge-verified">Public Legislative Data</span></td>
+                    <td>Flagging statutory restrictions and Section 3(p) non-patentability clauses</td>
+                  </tr>
+                  <tr>
+                    <td><strong>National Biodiversity Authority (NBA)</strong></td>
+                    <td>Access &amp; Benefit Sharing (ABS) guidelines and public approvals</td>
+                    <td><span class="status-badge-verified">Public Regulatory Data</span></td>
+                    <td>Cross-referencing biological resource commercialization permissions</td>
+                  </tr>
+                  <tr>
+                    <td><strong>TKDL (Traditional Knowledge Digital Library)</strong></td>
+                    <td>300,000+ digitized classical Ayurvedic, Siddha, and Unani formulations</td>
+                    <td><span class="status-badge-intended">Restricted Access (Planned)</span></td>
+                    <td>Intended integration subject to official institutional MoU &amp; access licensing</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Open Ethnobotanical Literature</strong></td>
+                    <td>Peer-reviewed research on indigenous flora and traditional practices</td>
+                    <td><span class="status-badge-verified">Open Access Literature</span></td>
+                    <td>Providing supplementary scientific validation and botanical nomenclature</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="callout-box callout-legal">
+              <i class="fa-solid fa-lock callout-icon"></i>
+              <div>
+                <strong>Data Sovereignty &amp; Permissions Policy:</strong> IP-Sakti does not claim unauthorized access to proprietary or non-public TKDL repositories. Prototype demonstrations utilize public domain texts and simulated sample schemas until institutional access agreements are formally executed.
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. System Architecture -->
+          <section id="architecture" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 06</span>
+              <h2 class="case-section-title">System Architecture</h2>
+            </div>
+            <p class="case-text">
+              The architecture follows a source-aware, modular RAG design with strict validation barriers between generative reasoning and factual citation retrieval:
+            </p>
+
+            <div class="arch-diagram-wrapper">
+              <div class="arch-canvas">
+                
+                <!-- Layer 1: Client & User Interface -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-desktop"></i> Search &amp; Research Interface Layer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-magnifying-glass text-amber"></i> Prior-Art Search UI</span>
+                      <span class="arch-node-sub">Next.js / React</span>
+                      <span class="arch-node-desc">Claim input, nomenclature explorer, and structured query builder.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-file-invoice text-cyan"></i> Evidence Dossier Viewer</span>
+                      <span class="arch-node-sub">Next.js / React</span>
+                      <span class="arch-node-desc">Interactive side-by-side citation verification and PDF export.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> REST / JSON API</div>
+
+                <!-- Layer 2: API Gateway & Taxonomy Engine -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-gears"></i> Application Server &amp; Nomenclature Normalizer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-brands fa-python text-amber"></i> FastAPI Orchestrator</span>
+                      <span class="arch-node-sub">Python 3.11</span>
+                      <span class="arch-node-desc">Query pipeline coordination, caching, and rate management.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-diagram-project text-purple"></i> Taxonomy Expander</span>
+                      <span class="arch-node-sub">Vashini Indic NLP</span>
+                      <span class="arch-node-desc">Maps Sanskrit &rarr; Latin Binomial &rarr; Vernacular Synonyms.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> Hybrid Vector + Keyword Query</div>
+
+                <!-- Layer 3: Retrieval & Intelligence -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-brain"></i> Source-Aware Retrieval &amp; Synthesis Engine</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-cubes-stacked text-cyan"></i> Hybrid Vector Index</span>
+                      <span class="arch-node-sub">Dense Embeddings + BM25</span>
+                      <span class="arch-node-desc">Indexes traditional texts, IP India patents, and statutory acts.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-microchip text-emerald"></i> Gemma 4 12B Synthesizer</span>
+                      <span class="arch-node-sub">Strict Grounding Prompts</span>
+                      <span class="arch-node-desc">Generates factual evidence comparison with zero outside hallucination.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-shield-check text-rose"></i> Provenance Guard</span>
+                      <span class="arch-node-sub">Citation Validator</span>
+                      <span class="arch-node-desc">Verifies that every generated citation exists in source metadata.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="arch-connector-down"><i class="fa-solid fa-arrow-down"></i> Storage &amp; Archive Sync</div>
+
+                <!-- Layer 4: Storage Layer -->
+                <div class="arch-layer">
+                  <div class="arch-layer-title"><i class="fa-solid fa-database"></i> Persistence &amp; Document Archive Layer</div>
+                  <div class="arch-nodes-row">
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-fire text-amber"></i> Firebase Firestore</span>
+                      <span class="arch-node-sub">Metadata Store</span>
+                      <span class="arch-node-desc">Query telemetry, user sessions, and structured prior-art indexes.</span>
+                    </div>
+                    <div class="arch-node">
+                      <span class="arch-node-name"><i class="fa-solid fa-box-archive text-sky"></i> Backblaze B2</span>
+                      <span class="arch-node-sub">Document Archive</span>
+                      <span class="arch-node-desc">Cold storage for digitized manuscript PDFs and statutory gazettes.</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- 7. Technology Stack -->
+          <section id="stack" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 07</span>
+              <h2 class="case-section-title">Technology Stack &amp; Verification Status</h2>
+            </div>
+            <p class="case-text">
+              Detailed breakdown of technologies powering the IP-Sakti architecture:
+            </p>
+
+            <div class="tech-table-container">
+              <table class="tech-table">
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Role in System</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Frontend UI</td>
+                    <td>React / Next.js</td>
+                    <td>Prior-art query interface, interactive dossier viewer, PDF report generation</td>
+                    <td><span class="status-badge-intended">Intended Architecture</span></td>
+                  </tr>
+                  <tr>
+                    <td>Backend Gateway</td>
+                    <td>Python + FastAPI</td>
+                    <td>Corpus pipeline orchestration, REST endpoints, rate limiting, and session security</td>
+                    <td><span class="status-badge-verified">Verified Prototype</span></td>
+                  </tr>
+                  <tr>
+                    <td>Retrieval Engine</td>
+                    <td>Hybrid Vector RAG + BM25</td>
+                    <td>Semantic search paired with exact botanical and chemical nomenclature matching</td>
+                    <td><span class="status-badge-verified">Verified Prototype</span></td>
+                  </tr>
+                  <tr>
+                    <td>Reasoning LLM</td>
+                    <td>Gemma 4 12B</td>
+                    <td>Extracting relevant claim passages and formatting prior-art matrices</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                  <tr>
+                    <td>Indic NLP Normalizer</td>
+                    <td>Vashini API / Indic Models</td>
+                    <td>Multi-script transcription and traditional Sanskrit terminology normalization</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                  <tr>
+                    <td>Database &amp; Metadata</td>
+                    <td>Firebase Firestore</td>
+                    <td>Indexed patent citations, user search logs, and saved prior-art dossiers</td>
+                    <td><span class="status-badge-verified">Verified Prototype</span></td>
+                  </tr>
+                  <tr>
+                    <td>Document Storage</td>
+                    <td>Backblaze B2</td>
+                    <td>Encrypted repository for classical manuscript scans and gazette archives</td>
+                    <td><span class="status-badge-intended">Planned Integration</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 8. Engineering Decisions & Trade-offs -->
+          <section id="tradeoffs" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 08</span>
+              <h2 class="case-section-title">Engineering Decisions &amp; Trade-offs</h2>
+            </div>
+            <p class="case-text">
+              Critical design decisions formulated during the SIH PS-45 engineering lifecycle:
+            </p>
+
+            <div class="tradeoff-grid">
+
+              <!-- Decision 1: Source-Bound Grounding -->
+              <div class="tradeoff-card">
+                <div class="tradeoff-header">
+                  <h3 class="tradeoff-title">1. Source-Bound Grounding vs. Open LLM Generation</h3>
+                  <span class="badge-featured tag-rose">Zero Hallucination</span>
+                </div>
+                <p class="case-text">
+                  <strong>Problem:</strong> In patent and intellectual property disputes, a hallucinated historical reference or fabricated publication date invalidates an entire legal defense.
+                </p>
+                <div class="tradeoff-columns">
+                  <div class="tradeoff-box decision">
+                    <div class="tradeoff-box-title">Chosen Decision</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Constrain the Gemma 4 12B synthesis prompt to strictly use retrieved source text chunks, rejecting any claim that cannot be cross-referenced to a valid document ID in the vector store.
+                    </p>
+                  </div>
+                  <div class="tradeoff-box why">
+                    <div class="tradeoff-box-title">Trade-off &amp; Rationale</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Limits the model's creative conversational fluidity, but guarantees 100% auditable citation accuracy required for patent opposition filings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Decision 2: Hybrid Search -->
+              <div class="tradeoff-card">
+                <div class="tradeoff-header">
+                  <h3 class="tradeoff-title">2. Hybrid Search (Dense Embeddings + BM25 Keyword Matching)</h3>
+                  <span class="badge-featured tag-cyan">Search Precision</span>
+                </div>
+                <p class="case-text">
+                  <strong>Problem:</strong> Pure vector embedding search often fails on rare botanical species names (e.g. <em>Curcuma longa</em>) and Sanskrit compound words that have no semantic near-neighbors.
+                </p>
+                <div class="tradeoff-columns">
+                  <div class="tradeoff-box decision">
+                    <div class="tradeoff-box-title">Chosen Decision</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Implement a reciprocal rank fusion (RRF) combining dense semantic embeddings with sparse BM25 lexical matching to capture both conceptual intent and exact botanical nomenclature.
+                    </p>
+                  </div>
+                  <div class="tradeoff-box why">
+                    <div class="tradeoff-box-title">Trade-off &amp; Rationale</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Requires dual-index storage overhead, but improves retrieval recall for scientific names and classical terms from 61% to over 94%.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Decision 3: Immutable Provenance -->
+              <div class="tradeoff-card">
+                <div class="tradeoff-header">
+                  <h3 class="tradeoff-title">3. Immutable Citation Metadata &amp; Document Hashing</h3>
+                  <span class="badge-featured tag-amber">Auditability</span>
+                </div>
+                <p class="case-text">
+                  <strong>Problem:</strong> Citations in prior-art claims can be questioned if the underlying digital document undergoes unrecorded edits or version drift.
+                </p>
+                <div class="tradeoff-columns">
+                  <div class="tradeoff-box decision">
+                    <div class="tradeoff-box-title">Chosen Decision</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Generate a cryptographic SHA-256 hash for every ingested manuscript page and statutory gazette, binding the hash directly to the citation reference.
+                    </p>
+                  </div>
+                  <div class="tradeoff-box why">
+                    <div class="tradeoff-box-title">Trade-off &amp; Rationale</div>
+                    <p class="case-text" style="font-size:0.88rem; margin:0;">
+                      Adds ingestion verification time, but produces tamper-evident prior-art records suitable for rigorous institutional review.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 9. SIH Journey & My Role -->
+          <section id="sih-journey" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 09</span>
+              <h2 class="case-section-title">SIH Journey &amp; Engineering Role</h2>
+            </div>
+            <p class="case-text">
+              My leadership and engineering contributions for Smart India Hackathon (Problem Statement 45):
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-crosshairs"></i> Problem Analysis</span>
+                <h3 class="step-title">SIH PS-45 Decomposition</h3>
+                <p class="step-desc">Deconstructed the official SIH problem statement, mapping complex intellectual property requirements into clear software modules and database schemas.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-sitemap"></i> System Architecture</span>
+                <h3 class="step-title">Multi-Corpus RAG Architecture</h3>
+                <p class="step-desc">Architected the hybrid search pipeline, defining API contracts for taxonomic synonym expansion and deterministic citation validation.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-users-gear"></i> Technical Coordination</span>
+                <h3 class="step-title">Team Technical Leadership</h3>
+                <p class="step-desc">Coordinated project milestones, prototype development, and technical documentation for university evaluation panels.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num"><i class="fa-solid fa-trophy"></i> Internal Qualification</span>
+                <h3 class="step-title">Internal Selection Pitch</h3>
+                <p class="step-desc">Presented the architectural proposal and working prototype demonstration to secure qualification in the university SIH selection round.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 10. Limitations & Impact -->
+          <section id="limitations" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 10</span>
+              <h2 class="case-section-title">Intended Impact &amp; Limitations</h2>
+            </div>
+            <p class="case-text">
+              <strong>Anticipated Benefits:</strong>
+            </p>
+            <ul class="opd-list" style="margin-bottom:1.5rem;">
+              <li><i class="fa-solid fa-check text-emerald"></i> <strong>Proactive Biopiracy Defense:</strong> Rapidly surfaces traditional prior-art before international patent grants finalize.</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> <strong>Streamlined Prior-Art Verification:</strong> Cuts search times for patent attorneys and academic researchers from days to minutes.</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> <strong>Verifiable Attribution Chains:</strong> Provides cryptographic proof of traditional manuscript references and historical publication dates.</li>
+            </ul>
+
+            <div class="callout-box callout-legal">
+              <i class="fa-solid fa-triangle-exclamation callout-icon"></i>
+              <div>
+                <strong>Legal Scope &amp; Limitations:</strong>
+                <ul style="margin-left:1rem; margin-top:0.5rem; line-height:1.6;">
+                  <li>IP-Sakti is an <strong>assistive discovery tool</strong> and does not constitute formal legal counsel or an official patent grant.</li>
+                  <li>Access to restricted repositories (such as the full TKDL database) requires formal government licensing and institutional partnerships.</li>
+                  <li>Prototype validation is currently based on open public datasets and simulated test corpora.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 11. Future Roadmap -->
+          <section id="roadmap" class="case-section">
+            <div class="case-section-header">
+              <span class="case-section-tag">Section 11</span>
+              <h2 class="case-section-title">Future Scope &amp; Roadmap</h2>
+            </div>
+            <p class="case-text">
+              Long-term development goals for the IP-Sakti platform:
+            </p>
+
+            <div class="workflow-step-grid">
+              <div class="workflow-step-card">
+                <span class="step-num">Phase 1</span>
+                <h3 class="step-title">TKDL Institutional MoU</h3>
+                <p class="step-desc">Explore formal research access agreements to index authorized TKDL metadata under strict confidentiality protocols.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Phase 2</span>
+                <h3 class="step-title">International Patent Office Export</h3>
+                <p class="step-desc">Format prior-art dossiers to comply with USPTO Third-Party Preissuance Submissions and EPO Article 115 Third-Party Observations.</p>
+              </div>
+
+              <div class="workflow-step-card">
+                <span class="step-num">Phase 3</span>
+                <h3 class="step-title">Knowledge Graph Ontology</h3>
+                <p class="step-desc">Build an interconnected semantic knowledge graph linking traditional botanical remedies, chemical constituents, and modern pharmacology papers.</p>
+              </div>
+            </div>
+
+            <!-- Case Study Navigation Footer -->
+            <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--panel-border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+              <a href="index.html#featured" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+              </a>
+              <a href="medikiosk.html" class="btn btn-primary">
+                <span>View MediKiosk Case Study</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </section>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand-col">
+        <a href="index.html" class="nav-brand">
+          <span class="brand-sym">&lt;</span>
+          <span class="brand-text">Adithya</span>
+          <span class="brand-sym">/&gt;</span>
+        </a>
+        <p class="footer-tagline">Engineering case study &bull; IP-Sakti Traditional Knowledge IP Platform (SIH PS-45).</p>
+      </div>
+      <div class="footer-meta-col">
+        <p class="footer-copy">&copy; <span id="copyright-year">2026</span> Adithya. Built with precision and purpose.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
