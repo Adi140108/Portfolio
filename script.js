@@ -435,14 +435,19 @@ function initNavigation() {
 
   // Mobile menu toggle
   if (toggleBtn && navMenu) {
-    toggleBtn.addEventListener('click', () => {
-      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', !expanded);
-      navMenu.classList.toggle('active');
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = navMenu.classList.toggle('active');
+      toggleBtn.setAttribute('aria-expanded', String(isActive));
       const icon = toggleBtn.querySelector('i');
       if (icon) {
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-xmark');
+        if (isActive) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-xmark');
+        } else {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        }
       }
     });
 
@@ -452,10 +457,22 @@ function initNavigation() {
         toggleBtn.setAttribute('aria-expanded', 'false');
         const icon = toggleBtn.querySelector('i');
         if (icon) {
-          icon.classList.add('fa-bars');
           icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
         }
       });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        navMenu.classList.remove('active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        const icon = toggleBtn.querySelector('i');
+        if (icon) {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        }
+      }
     });
   }
 }
