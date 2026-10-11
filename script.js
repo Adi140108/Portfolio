@@ -808,8 +808,8 @@ function initModals() {
     }
   }
 
-  if (openResumeBtn) openResumeBtn.addEventListener('click', openResume);
-  if (heroResumeTrigger) heroResumeTrigger.addEventListener('click', openResume);
+  if (openResumeBtn && openResumeBtn.tagName === 'BUTTON') openResumeBtn.addEventListener('click', openResume);
+  if (heroResumeTrigger && heroResumeTrigger.tagName === 'BUTTON') heroResumeTrigger.addEventListener('click', openResume);
   if (closeResumeModal) closeResumeModal.addEventListener('click', closeAllModals);
   if (closeResumeSecondary) closeResumeSecondary.addEventListener('click', closeAllModals);
   if (closeProjectModal) closeProjectModal.addEventListener('click', closeAllModals);

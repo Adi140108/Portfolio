@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3.6">
+  <link rel="stylesheet" href="style.css?v=3.7">
 </head>
 <body class="bg-base">
 
@@ -66,10 +66,10 @@
         </div>
 
         <div class="nav-right-actions">
-          <button class="btn btn-sm btn-glass" id="open-resume-btn" aria-label="View or Request Resume">
-            <i class="fa-regular fa-file-lines"></i>
+          <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-glass" id="open-resume-btn" aria-label="View Resume PDF">
+            <i class="fa-regular fa-file-pdf"></i>
             <span>Resume</span>
-          </button>
+          </a>
           <a href="https://github.com/Adi140108" target="_blank" rel="noopener noreferrer" class="btn-github-pill" aria-label="Visit GitHub Profile Adi140108">
             <i class="fa-brands fa-github"></i>
             <span>@Adi140108</span>
@@ -123,10 +123,10 @@
               <i class="fa-regular fa-paper-plane"></i>
               <span>Get In Touch</span>
             </a>
-            <button class="btn btn-glass" id="hero-resume-trigger">
+            <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-glass" id="hero-resume-trigger" aria-label="View Resume PDF">
               <i class="fa-regular fa-file-pdf"></i>
-              <span>Request Resume</span>
-            </button>
+              <span>View Resume</span>
+            </a>
           </div>
 
           <!-- Hero Verified Social Dock -->
@@ -1001,6 +1001,7 @@
         <a href="#repos">Repositories</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+        <a href="./resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
       </div>
 
       <div class="footer-meta-col">
@@ -1035,12 +1036,15 @@
           </ul>
         </div>
         <p class="modal-prompt">
-          To receive an updated PDF resume tailored to your team's stack or job description:
+          View or download my verified resume directly below:
         </p>
       </div>
       <div class="modal-footer">
-        <a href="mailto:adithyam357@gmail.com?subject=Resume%20Request%20for%20Adithya&body=Hi%20Adithya,%20we%20reviewed%20your%20portfolio%20and%20would%20like%20to%20request%20your%20updated%20resume%20for%20a%20role/project." class="btn btn-primary">
-          <i class="fa-solid fa-paper-plane"></i> Request Resume via Email
+        <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> View PDF
+        </a>
+        <a href="./resume.pdf" download="Adithya_Resume.pdf" class="btn btn-glass">
+          <i class="fa-solid fa-download"></i> Download PDF
         </a>
         <button class="btn btn-glass" id="modal-close-secondary">Close</button>
       </div>
@@ -1070,6 +1074,6 @@
   </div>
 
   <!-- Application Logic -->
-  <script src="script.js?v=3.6"></script>
+  <script src="script.js?v=3.7"></script>
 </body>
 </html>
