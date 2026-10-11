@@ -760,13 +760,25 @@ h1, h2, h3, h4, h5, h6 {
 .about-hero-box {
   padding: 3.5rem;
   border-color: rgba(245, 158, 11, 0.18);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .about-content-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 3.5rem;
   align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.about-narrative,
+.about-code-preview {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 .about-title {
@@ -1792,7 +1804,7 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
   }
   .about-content-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -2079,7 +2091,7 @@ h1, h2, h3, h4, h5, h6 {
 
   /* About Section on Mobile */
   .about-hero-box {
-    padding: 1.35rem 1rem !important;
+    padding: 1.25rem 1rem !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -2087,44 +2099,60 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .about-content-grid {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 1.75rem !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
   }
 
   .about-narrative {
     width: 100% !important;
+    max-width: 100% !important;
     min-width: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .about-title {
     font-size: clamp(1.35rem, 5.5vw, 1.75rem) !important;
     line-height: 1.25 !important;
     margin: 0.6rem 0 0.85rem 0 !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
   }
 
   .about-paragraph {
     font-size: 0.9rem !important;
     line-height: 1.55 !important;
     margin-bottom: 0.85rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
     overflow-wrap: break-word !important;
     word-break: normal !important;
+    box-sizing: border-box !important;
   }
 
   .about-pillars-list {
     margin: 1.25rem 0 !important;
     gap: 0.85rem !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .pillar-item {
     display: flex !important;
     align-items: flex-start !important;
-    gap: 0.75rem !important;
-    font-size: 0.86rem !important;
-    line-height: 1.5 !important;
+    gap: 0.65rem !important;
+    font-size: 0.85rem !important;
+    line-height: 1.45 !important;
     width: 100% !important;
+    max-width: 100% !important;
     min-width: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .pillar-icon {
@@ -2136,10 +2164,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .pillar-item span {
-    flex: 1 1 auto !important;
+    flex: 1 1 0% !important;
     min-width: 0 !important;
+    max-width: 100% !important;
     overflow-wrap: break-word !important;
     word-break: normal !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
   }
 
   .about-btn-row {
@@ -2147,6 +2178,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.65rem !important;
     margin-top: 1.5rem !important;
     width: 100% !important;
+    max-width: 100% !important;
   }
 
   .about-btn-row .btn,
@@ -2158,25 +2190,38 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 44px !important;
   }
 
-  .ide-frame {
+  .about-code-preview {
+    width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .ide-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
 
   .ide-code-view {
-    padding: 1rem 0.85rem !important;
+    padding: 0.85rem !important;
+    width: 100% !important;
     max-width: 100% !important;
+    min-width: 0 !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     box-sizing: border-box !important;
   }
 
   .ide-code-view code {
-    font-size: 0.75rem !important;
-    line-height: 1.45 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
     white-space: pre !important;
-    display: block !important;
+    display: inline-block !important;
+    min-width: 0 !important;
   }
 
   /* Timeline */
